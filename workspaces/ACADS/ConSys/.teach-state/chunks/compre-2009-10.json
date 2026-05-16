@@ -1,0 +1,223 @@
+{
+  "source_file": "Control Systems 2009-10 Comprehensive.pdf",
+  "content_type": "exam_paper",
+  "year_label": "2009-10",
+  "year_canonical": 2010,
+  "evaluation_component": "comprehensive",
+  "questions": [
+    {
+      "id": "Q-2010-compre-1a",
+      "stem": "An ac-dc servo system is given with: KA=5 Vdc/Vdc, Ks=7 Vrms/rad, Kd=3 Vdc/Vrms, KT=1 Nm/A, Kb=1 V/rad/s, Ra=1 Ω, JL=5 kg.m², BL=2.5 Nm/rad/s, Jm=1 kg.m², Bm=0.55 Nm/rad/s, gear ratio M/L=10, M/s=1/5. Draw the block diagram.",
+      "topics": ["control-components", "mathematical-modelling", "block-diagram-reduction"],
+      "primary_topic": "control-components",
+      "marks": 10,
+      "bloom_level": "apply",
+      "problem_type": "ac-dc-servo-block-diagram",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect reflected inertia/friction calculation through gear train",
+        "Missing demodulator or synchro pair blocks",
+        "Wrong gear ratio direction (M/L vs L/M)"
+      ],
+      "solution_method": "Identify each component (synchro pair, demodulator, amplifier, DC motor with armature circuit, gear train, load). Reflect JL and BL to motor shaft using n²=1/100, compute Jeq and Beq. Draw forward path from θR through Ks, Kd, KA, motor TF to θM, then gear ratio to θL. Back-emf provides inner feedback.",
+      "key_formulas": [
+        "Jeq = Jm + (1/n²)JL where n = θL/θM = 1/10",
+        "Beq = Bm + (1/n²)BL",
+        "Motor TF: θM(s)/Va(s) = KT / [s(RaJeq·s + RaBeq + KbKT)]"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-1b",
+      "stem": "For the ac-dc servo system in Q1, determine the closed-loop transfer function θL(s)/θR(s).",
+      "topics": ["control-components", "mathematical-modelling", "block-diagram-reduction"],
+      "primary_topic": "block-diagram-reduction",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "servo-closed-loop-TF",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Forgetting the gear ratio factor in the output (θL = θM/10)",
+        "Incorrect loop gain due to unit confusion (Vrms vs Vdc)"
+      ],
+      "solution_method": "Compute overall open-loop gain K_open = Ks·Kd·KA·KT / (Ra·Jeq). Apply standard closed-loop formula: θL/θR = (n·G(s))/(1+G(s)·H(s)) where G(s) is motor TF and H(s)=Kb·s (back-emf feedback), then include synchro/demodulator/amplifier chain.",
+      "key_formulas": [
+        "θL(s)/θR(s) = [n·Kforward·G_motor(s)] / [1 + Kforward·G_motor(s)]",
+        "Kforward = Ks·Kd·KA = 7×3×5 = 105"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-1c",
+      "stem": "For the ac-dc servo system in Q1 with computed TF, determine the rise time.",
+      "topics": ["time-domain-specs", "control-components"],
+      "primary_topic": "time-domain-specs",
+      "marks": 4,
+      "bloom_level": "apply",
+      "problem_type": "rise-time-from-2nd-order-TF",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using wrong formula for tr when damping ratio is not standard",
+        "Confusing rise time definition (10-90% vs 0-100%)"
+      ],
+      "solution_method": "From computed closed-loop TF identify ωn and ζ. Apply tr = (π - φ)/(ωd) where φ = arctan(ωd/σ) and ωd = ωn√(1-ζ²).",
+      "key_formulas": [
+        "tr = (π - arccos(ζ)) / ωd",
+        "ωd = ωn√(1 - ζ²)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-2",
+      "stem": "Sketch the Nyquist plot for G(s) = K(s+1) / [s²(s+2)], choosing the appropriate Nyquist contour. Determine the range of K (K>0) for which the closed-loop system is stable. Verify using Routh stability criterion.",
+      "topics": ["nyquist-criterion", "stability-RH", "gain-phase-margin"],
+      "primary_topic": "nyquist-criterion",
+      "marks": 25,
+      "bloom_level": "analyze",
+      "problem_type": "nyquist-stability-range-K",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect indentation around double pole at origin — missing two semicircle contributions",
+        "Wrong encirclement count due to sign error in N = Z - P",
+        "Not checking behavior at s→∞ or on imaginary axis segments"
+      ],
+      "solution_method": "G(s) has double pole at origin, so indent Nyquist contour with small semicircle. Evaluate G(jω) for ω: 0⁺ to ∞ (real axis crossing), map small semicircle (two 180° rotations → angle -360°), and the mirror image. Find real-axis crossings of G(jω) by setting Im[G(jω)]=0 and compute Re at those ω. Apply N=Z-P; P=0 (no open-loop RHP poles), so Z=N encirclements → stability condition. Verify by forming CE 1+G(s)=0, expanding and applying RH criterion.",
+      "key_formulas": [
+        "G(jω) = K(jω+1) / [(jω)²(jω+2)]",
+        "Im[G(jω)] = 0 → solve for ω_pc",
+        "Characteristic equation: s³ + 2s² + Ks + K = 0 (after clearing)",
+        "RH: 2K > K (stable for K > 0)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-3a",
+      "stem": "Unity feedback system with forward path K·[1/((s+a)(s+b))]. Step response: peak overshoot = 16.3%, final value = 1. Ramp steady-state error = 0.0625. Find K, a, b (all ≥ 0).",
+      "topics": ["time-domain-specs", "steady-state-error"],
+      "primary_topic": "time-domain-specs",
+      "marks": 7,
+      "bloom_level": "analyze",
+      "problem_type": "find-system-params-from-specs",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Conflating type number with coefficient K/ab for Kv",
+        "Not using Mp formula correctly to extract ζ",
+        "Assuming a=0 or b=0 without checking type"
+      ],
+      "solution_method": "From Mp=16.3% → ζ≈0.5. Final value=1 → DC gain = K/(ab) = 1 (unity). Type-1 system needed for finite ramp error → one of a,b=0; but final value=1 with step means DC gain=1 so actually type-0. Ramp SSE=0.0625 → Kv=16 → K/(a+b)... Re-examine: system is type-0 so ramp error→∞ unless it's type-1. Resolve by setting one pole at origin: if b=0, Kv=K/a=16 and ωn²=K/Jeq, 2ζωn=a+b. Use Mp→ζ, then ωn²=K/a·a=K, 2ζωn=a, Kv=K/a=16.",
+      "key_formulas": [
+        "Mp = exp(-πζ/√(1-ζ²)) × 100% → ζ from Mp=16.3%",
+        "Kv = lim s→0 [s·G(s)] = K/(a) if b=0",
+        "ωn = √K, 2ζωn = a"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-3b",
+      "stem": "With K, a, b as found in Q3(a), add an integral controller (gain K1) to eliminate ramp steady-state error. Find the range of K1 for closed-loop stability.",
+      "topics": ["PID-controller", "steady-state-error", "stability-RH"],
+      "primary_topic": "PID-controller",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "integral-controller-stability-range",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Adding proportional instead of integral action",
+        "Forgetting to rewrite CE after adding integrator"
+      ],
+      "solution_method": "Add integrator K1/s in forward path. New open-loop TF = K·K1 / [s(s+a)(s+b)]. Form CE, apply RH criterion to find K1 range that keeps all roots in LHP.",
+      "key_formulas": [
+        "CE: s³ + (a+b)s² + ab·s + K·K1 = 0",
+        "RH stability: (a+b)·ab > K·K1"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-3c",
+      "stem": "Draw the root contours for the system in Q3 for two values of K (8 and 13) with 0 < K1 < ∞, keeping a and b at computed values.",
+      "topics": ["root-locus", "PID-controller"],
+      "primary_topic": "root-locus",
+      "marks": 12,
+      "bloom_level": "apply",
+      "problem_type": "root-contour-varying-K1",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Confusing root locus (K varying) with root contour (K1 varying at fixed K)",
+        "Wrong open-loop poles/zeros when K1 is the variable"
+      ],
+      "solution_method": "Rearrange CE in the form 1 + K1·[K / (s(s+a)(s+b) + K·0)] = 0 → treat K1 as the variable gain. Identify equivalent open-loop poles (roots of s(s+a)(s+b)=0 for each fixed K) and zeros. Sketch RL rules: n=3 poles, m=0 zeros, 3 asymptotes at 60°,180°,300°. Repeat for K=8 and K=13.",
+      "key_formulas": [
+        "Characteristic equation rearranged: s(s+a)(s+b) + K·K1 = 0",
+        "K1·[K/(s(s+a)(s+b))] → root locus in K1"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-4a",
+      "stem": "A system is described by: y = 2x - 4z - 5u; z = 3y - 3w + dz/dt; w = 2z; u = w + 2·dz/dt. Draw the SFG (without solving equations) and determine U(s)/X(s) using Mason's Gain Formula.",
+      "topics": ["signal-flow-graph", "mathematical-modelling"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 15,
+      "bloom_level": "apply",
+      "problem_type": "sfg-masons-formula-TF",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Missing self-loop from dz/dt term (1/s integration branch)",
+        "Incorrect loop identification — missing touching/non-touching pairs",
+        "Wrong sign on feedback branches"
+      ],
+      "solution_method": "Take Laplace of each equation: Y=2X-4Z-5U; Z=3Y-3W+sZ (→Z(1-s)=3Y-3W, rewrite as Z=(3Y-3W)/(1-s)); W=2Z; U=W+2sZ. Assign nodes X,Y,Z,W,U. Draw branches per equation term. Apply Mason's: identify all forward paths X→...→U, compute Δ (graph determinant with all loops), compute Δk (sub-determinants), TF=ΣPkΔk/Δ.",
+      "key_formulas": [
+        "Mason's: T = ΣPk·Δk / Δ",
+        "Δ = 1 - ΣLi + ΣLiLj - ..."
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-4b",
+      "stem": "Using the TF U(s)/X(s) from Q4(a) as an open-loop TF for unity negative feedback, draw the polar plot and calculate the Gain Margin and Phase Margin.",
+      "topics": ["polar-plot", "gain-phase-margin", "nyquist-criterion"],
+      "primary_topic": "polar-plot",
+      "marks": 5,
+      "bloom_level": "apply",
+      "problem_type": "polar-plot-GM-PM",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not finding phase-crossover frequency correctly",
+        "Wrong sign for phase angle (checking +180 vs -180)"
+      ],
+      "solution_method": "Substitute s=jω in the TF. Find phase-crossover frequency ωpc where ∠G(jωpc)=-180°. Compute GM=1/|G(jωpc)|. Find gain-crossover frequency ωgc where |G(jωgc)|=1. Compute PM=180°+∠G(jωgc).",
+      "key_formulas": [
+        "GM = 1/|G(jωpc)| in absolute, 20log10(GM) in dB",
+        "PM = 180° + ∠G(jωgc)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010-compre-5",
+      "stem": "Open-loop TF: K / [s²(0.4s + 2)]. Design a phase-lead compensator (with amplifier) using asymptotic Bode plots to meet: Ka = 5, Phase Margin = 10° (take safety factor = 10°). Also draw Bode plots for the compensated system.",
+      "topics": ["bode-design", "bode-plot", "steady-state-error"],
+      "primary_topic": "bode-design",
+      "marks": 30,
+      "bloom_level": "evaluate",
+      "problem_type": "lead-compensator-bode-design",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Using wrong error constant formula for type-2 system (Ka = lim s²G(s))",
+        "Not accounting for phase added by compensator at new ωgc",
+        "Forgetting to include amplifier gain to restore Ka after compensation",
+        "Placing φmax at wrong frequency"
+      ],
+      "solution_method": "Step 1: Ka=lim s→0 [s²·G_compensated(s)]=5 → set K. Step 2: Plot uncompensated Bode, find ωgc and PM. Step 3: Required additional phase = PMdesired + margin - PM_uncompensated. Step 4: Compute α=(1-sinφmax)/(1+sinφmax), compensator zero at 1/τ, pole at 1/(ατ). Step 5: Place ωmax at new ωgc where |G(jω)|=−10log(1/α) dB. Step 6: Write Gc(s)=(1+αTs)/(1+Ts)/α, choose α and T. Verify PM of compensated system.",
+      "key_formulas": [
+        "Ka = K/2 for G(s)=K/[s²(0.4s+2)] → K=10 for Ka=5",
+        "sinφmax = (1-α)/(1+α)",
+        "Lead compensator: Gc(s) = (1+Ts)/(1+αTs), α<1",
+        "ωmax = 1/(T√α)",
+        "Gain at ωmax from uncompensated = -10log(1/α) dB"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "First Semester 2009-10 paper (Dec 2009). Course code AAOC C321 (not F242) — classify as external reference paper for typology. Total 120 marks. Q5 is 30 marks and requires semi-log graph paper — heavy Bode design. Q2 combines Nyquist + RH verification (25 marks). Q3 is a multi-part synthesis problem spanning time-domain specs, error constants, root contour."
+}

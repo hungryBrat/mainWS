@@ -1,0 +1,61 @@
+{
+  "source_file": "Quiz 6_CONSYS (Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 6",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1A",
+      "stem": "Unity feedback closed loop system with open loop TF G(s). Nyquist plot intersects real axis at Point A = -0.585 (ω = 10.2 rad/s) and unit circle at Point B = -0.97 - j0.21 (ω = 7.72 rad/s). Find the gain margin in dB.",
+      "topics": ["nyquist-criterion", "gain-phase-margin"],
+      "primary_topic": "gain-phase-margin",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "compute-GM-from-nyquist-point",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Inverting the formula: using 20log(|G(jωpc)|) instead of 20log(1/|G(jωpc)|)",
+        "Taking |G| at wrong frequency (using ω=7.72 instead of ω=10.2)"
+      ],
+      "solution_method": "At phase crossover frequency ω=10.2 rad/s, the Nyquist plot crosses the real axis at -0.585, so |G(jωpc)| = 0.585. GM = 20log(1/0.585) = 4.65 dB.",
+      "key_formulas": ["GM = 20 log(1/|G(jω_pc)|)"],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1B",
+      "stem": "Unity feedback closed loop system with open loop TF G(s). Nyquist plot intersects unit circle at Point B = -0.97 - j0.21 (ω = 7.72 rad/s). Find the phase margin in degrees.",
+      "topics": ["nyquist-criterion", "gain-phase-margin"],
+      "primary_topic": "gain-phase-margin",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "compute-PM-from-nyquist-point",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using 180 - angle instead of 180 + angle (sign error when point is in third quadrant)",
+        "Computing angle of Point B incorrectly by ignoring negative real part"
+      ],
+      "solution_method": "At gain crossover frequency ω=7.72 rad/s, G(jωgc) = -0.97 - j0.21. Angle = 180 + arctan(0.21/0.97) = 180 + 12.2 = 192.2° from positive real axis → PM = 180 - 167.8 = 12.2°. Equivalently PM = 180 + ∠G(jωgc) = 180 + (-167.8) = 12.2°.",
+      "key_formulas": ["PM = 180° + ∠G(jω_gc)", "∠(-0.97 - j0.21) = 180° + arctan(0.21/0.97) in third quadrant = -167.8°"],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1C",
+      "stem": "Unity feedback closed loop system with open loop TF G(s). If the open loop gain is increased by a factor of 1.709, what will be the new phase crossover frequency?",
+      "topics": ["gain-phase-margin", "nyquist-criterion"],
+      "primary_topic": "gain-phase-margin",
+      "marks": 2,
+      "bloom_level": "understand",
+      "problem_type": "gain-change-effect-on-phase-crossover",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Assuming gain change shifts the phase crossover frequency",
+        "Confusing gain crossover frequency with phase crossover frequency"
+      ],
+      "solution_method": "Gain variation does not affect the phase plot of G(jω). The phase crossover frequency is defined where ∠G(jω) = -180°, which is independent of gain magnitude. Therefore the phase crossover frequency remains 10.2 rad/s. (Alternatively: scaling by 1.709 moves the real-axis intersection from -0.585 to -0.585×1.709 ≈ -1, but the frequency at which the phase is -180° is unchanged.)",
+      "key_formulas": ["ω_pc is defined by ∠G(jω_pc) = -180°, independent of gain K"],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Single question with three sub-parts, all on Nyquist-based GM/PM computation. Part C tests conceptual understanding that gain scaling does not affect phase crossover frequency."
+}

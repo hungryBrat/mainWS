@@ -1,0 +1,116 @@
+{
+  "source_file": "Tut 11.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 11",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1A",
+      "stem": "For unity feedback closed loop system with G(s) = K(s+1)/[s(s+5)(s+20)(s+50)], K=2500: Draw the asymptotic Bode plot.",
+      "topics": ["bode-plot"],
+      "primary_topic": "bode-plot",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "draw-asymptotic-bode-plot",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect DC gain calculation (20*log10(K/5/20/50))",
+        "Missing zero at s=-1 contribution; wrong slope transitions",
+        "Not accounting for the zero when computing initial slope (-20 dB/dec from integrator)"
+      ],
+      "solution_method": "Express G(s) in Bode standard form: G(s) = (2500/5000)*(s+1)/[s*(1+s/5)*(1+s/20)*(1+s/50)]. DC gain = 0.5 = -6 dB. Plot asymptotes: start at -6 dB with slope -20 dB/dec (integrator), slope changes at corner frequencies ω=1 (zero, +20), ω=5 (pole, -20), ω=20 (pole, -20), ω=50 (pole, -20 dB/dec).",
+      "key_formulas": [
+        "G(jω)|dB = 20 log10|G(jω)|",
+        "Corner frequencies at ω = 1, 5, 20, 50 rad/s",
+        "Slope contribution: zero +20 dB/dec, pole -20 dB/dec"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1B",
+      "stem": "For G(s) = 2500(s+1)/[s(s+5)(s+20)(s+50)], find the gain margin (GM) and phase margin (PM) from the Bode plot.",
+      "topics": ["bode-plot", "gain-phase-margin"],
+      "primary_topic": "gain-phase-margin",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "find-GM-PM-from-bode",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing phase crossover frequency with gain crossover frequency",
+        "Sign error when computing GM in dB (GM = -|G(jω_pc)|dB)",
+        "Not accounting for the zero's phase contribution (+arctan(ω))"
+      ],
+      "solution_method": "Find phase crossover frequency ω_pc where ∠G(jω)=-180°; compute GM = -20log10|G(jω_pc)|. Find gain crossover frequency ω_gc where |G(jω)|=0 dB; compute PM = 180° + ∠G(jω_gc). From the Bode diagram shown: GM = 31.2 dB at ω=35.8 rad/s, PM = 111° at ω=0.572 rad/s.",
+      "key_formulas": [
+        "GM(dB) = -20 log10|G(jω_pc)|",
+        "PM = 180° + ∠G(jω_gc)",
+        "∠G(jω) = arctan(ω) - 90° - arctan(ω/5) - arctan(ω/20) - arctan(ω/50)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1C",
+      "stem": "For G(s) = 2500(s+1)/[s(s+5)(s+20)(s+50)], determine the stability of the system.",
+      "topics": ["gain-phase-margin", "bode-plot"],
+      "primary_topic": "gain-phase-margin",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "stability-from-GM-PM",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Confusing positive GM/PM with instability",
+        "Not checking both GM and PM before concluding stability"
+      ],
+      "solution_method": "System is stable if GM > 0 dB and PM > 0°. With GM = 31.2 dB and PM = 111°, both are positive, so the closed-loop system is stable.",
+      "key_formulas": [
+        "Stable if GM > 0 dB and PM > 0°"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1D",
+      "stem": "For G(s) = 2500(s+1)/[s(s+5)(s+20)(s+50)], what is the effect on GM and PM if K increases 10 times (K becomes 25000)?",
+      "topics": ["gain-phase-margin", "bode-plot"],
+      "primary_topic": "gain-phase-margin",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "effect-of-gain-change-on-GM-PM",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Thinking PM changes by same amount as GM",
+        "Forgetting that phase crossover frequency doesn't shift with gain change",
+        "Not recognising that gain crossover frequency shifts right, changing PM"
+      ],
+      "solution_method": "Increasing K by factor 10 shifts the Bode magnitude plot up by 20 dB uniformly; phase plot is unaffected. GM decreases by 20 dB (from 31.2 dB to ~11.2 dB). Gain crossover frequency shifts to higher ω where phase is more negative, so PM also decreases. System may still be stable but with reduced margins.",
+      "key_formulas": [
+        "ΔGM = -20 log10(10) = -20 dB",
+        "Phase plot unchanged with gain variation"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "Determine the transfer function of a minimum phase system whose Bode magnitude plot is obtained experimentally. The plot shows: initial slope -40 dB/dec, magnitude ~60 dB at ω=0.1 rad/s, a break at ω=1 rad/s where slope changes to -20 dB/dec, and the magnitude is ~20 dB at ω=1 rad/s.",
+      "topics": ["TF-from-bode", "bode-plot"],
+      "primary_topic": "TF-from-bode",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "identify-TF-from-bode-magnitude",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Misidentifying initial slope: -40 dB/dec means double integrator (1/s^2), not single",
+        "Wrong DC gain extraction — must extrapolate initial asymptote to ω=1",
+        "Not checking minimum phase assumption for phase consistency"
+      ],
+      "solution_method": "Initial slope -40 dB/dec → two poles at origin (1/s²). Break at ω=1 where slope changes to -20 dB/dec → one zero at s=-1 (factor s+1). At ω=1, magnitude asymptote reads 20 dB → |K/1²|=10, so K=10. TF = 10(s+1)/s².",
+      "key_formulas": [
+        "Slope -40 dB/dec → n poles at origin, n=2",
+        "Slope change +20 dB/dec at corner ω_c → zero at s = -ω_c",
+        "Magnitude at ω=1: 20 log10(K) = 20 dB → K = 10"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 7 April 2026. Two questions; Q1 has four sub-parts (A-D) all on the same G(s). Bode diagram with GM=31.2 dB at 35.8 rad/s, PM=111° at 0.572 rad/s is provided as indicative solution visual for Q1. Indicative solution for Q2 given as G(s)=10(s+1)/s²."
+}

@@ -1,0 +1,99 @@
+{
+  "source_file": "Tut 4_Final.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 4",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "Figure 1 shows an armature-controlled DC motor. Find the transfer function θ(s)/Ea(s) for this motor.",
+      "topics": ["mathematical-modelling", "control-components"],
+      "primary_topic": "control-components",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "derive-TF-armature-DC-motor",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Forgetting to include back-EMF term Kb*ω in armature equation",
+        "Not accounting for mechanical load inertia J and friction f in torque equation",
+        "Incorrect LaPlace transform of d/dt terms"
+      ],
+      "solution_method": "Write KVL for armature circuit: Ea = ia*Ra + La*(dia/dt) + Eb. Write torque-speed equation: Tm = J*(dω/dt) + f*ω where Tm = Kt*ia and Eb = Kb*ω. Take Laplace transforms, eliminate Ia(s) and Ω(s) to get θ(s)/Ea(s) = Kt / [s*(La*s + Ra)*(J*s + f) + Kt*Kb*s].",
+      "key_formulas": [
+        "Ea(s) = Ia(s)(Ra + La*s) + Kb*Ω(s)",
+        "Tm(s) = Kt*Ia(s) = (Js + f)*Ω(s)",
+        "θ(s)/Ea(s) = Kt / [s*((La*s+Ra)(Js+f) + Kt*Kb)]"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2a",
+      "stem": "The motor transfer function G(s) = Km/(τ′s+1) controls speed ωo(s) in closed-loop with tachometer feedback Kt and forward gain K (Fig. 2). Determine the value of K such that the closed-loop time constant τ″ = 0.1τ′. Given: τ′ = 0.1, Km = 1.25, Kt = 0.2.",
+      "topics": ["control-components", "feedback-properties", "time-domain-response"],
+      "primary_topic": "feedback-properties",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "find-gain-for-cl-time-constant",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrectly forming the closed-loop TF — missing the Kt block in feedback path",
+        "Confusing τ″ = τ′/(1+K*Km*Kt) formula derivation",
+        "Arithmetic error substituting numerical values"
+      ],
+      "solution_method": "Form T(s) = ωo(s)/Vr(s). The closed-loop TF with unity forward path K and tachometer feedback Kt is T(s) = K*Km / (τ′s + 1 + K*Km*Kt). Identify closed-loop time constant τ″ = τ′/(1 + K*Km*Kt). Set τ″ = 0.1τ′, solve: 1 + K*Km*Kt = 10, giving K = 9/(Km*Kt) = 9/(1.25*0.2) = 36.",
+      "key_formulas": [
+        "T(s) = K*Km / (τ′s + 1 + K*Km*Kt)",
+        "τ″ = τ′ / (1 + K*Km*Kt)",
+        "K = (τ′/τ″ - 1) / (Km*Kt)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2b",
+      "stem": "For the same tachometer-feedback speed control system, find the expression for sensitivity S_Kt^T and its value at ω = 0 rad/sec.",
+      "topics": ["feedback-properties"],
+      "primary_topic": "feedback-properties",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "sensitivity-wrt-feedback-gain",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Applying sensitivity formula S_x^T = (x/T)*(∂T/∂x) incorrectly",
+        "Not simplifying at ω=0 (s=j0=0)",
+        "Confusing numerator and denominator partial derivatives"
+      ],
+      "solution_method": "Use S_Kt^T = (Kt/T)*(∂T/∂Kt). With T(s) = K*Km/(τ′s + 1 + K*Km*Kt), compute ∂T/∂Kt = -K²*Km²/(τ′s+1+K*Km*Kt)². Thus S_Kt^T = -K*Km*Kt/(τ′s+1+K*Km*Kt). At ω=0 (s=0): S_Kt^T = -K*Km*Kt/(1+K*Km*Kt). Substitute known values to get the numerical answer.",
+      "key_formulas": [
+        "S_x^T = (x/T)*(∂T/∂x)",
+        "S_Kt^T = -K*Km*Kt / (τ′s + 1 + K*Km*Kt)",
+        "At s=0: S_Kt^T = -K*Km*Kt / (1 + K*Km*Kt)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3",
+      "stem": "Find the transfer function VL(s)/V(s) for the electrical network in Fig. 3, which contains a nonlinear resistor with voltage-current relationship ir = 2*e^(0.1*Vr), where ir and Vr are the resistor current and voltage. The circuit has a 1H inductor in series with the nonlinear resistor, with a 20V DC bias source.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "linearise-nonlinear-circuit-find-TF",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to find the operating point (DC bias) before linearising",
+        "Incorrect linearisation: slope of ir vs Vr must be evaluated at the operating point",
+        "Not replacing the nonlinear resistor with its linearised equivalent conductance in the small-signal circuit",
+        "Sign errors in KVL with the 20V source"
+      ],
+      "solution_method": "Step 1 — Find operating point: with v(t)=0, inductor is short in DC steady state, so Vr = 20V and ir0 = 2*e^(0.1*20) = 2*e^2. Step 2 — Linearise: small-signal conductance g = dir/dVr|_Q = 2*0.1*e^(0.1*Vr0) = 0.2*e^2. Equivalent small-signal resistance r = 1/g. Step 3 — Small-signal circuit: v(s) drives L=1H in series with r (linearised resistor); VL(s) = voltage across inductor = V(s)*[Ls/(Ls+r)] = V(s)*[s/(s + r)].",
+      "key_formulas": [
+        "Operating point: Vr0 = 20V, ir0 = 2*e^2",
+        "Linearised conductance: g = 0.2*e^(0.1*Vr0)",
+        "VL(s)/V(s) = Ls/(Ls + 1/g) = s/(s + g)"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 3 February 2026. 3 questions (Q2 split into 2a/2b), 4 entries total. Figures referenced are circuit/block diagrams embedded in the PDF. Q1 and Q3 require figure interpretation; stems faithfully paraphrased from visible text."
+}

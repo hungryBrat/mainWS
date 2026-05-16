@@ -1,0 +1,123 @@
+{
+  "source_file": "Tut 2.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 2",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "Balance a rolling ball of mass 'm' on a tilting beam controlled by motor input current i (Tm = Km*i), negligible friction, beam balanced near horizontal (phi=0) with small deviation. J is combined inertia of beam & shaft; ball has negligible inertia. Forces on ball: gravity and friction with coefficient 'b'. Find the transfer function X(s)/I(s).",
+      "topics": ["mathematical-modelling", "feedback-properties"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "derive-TF-electromechanical-system",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to linearize sin(phi) ≈ phi for small angle approximation",
+        "Missing the friction force b*x_dot on the ball in the force balance",
+        "Incorrectly combining beam torque equation with ball dynamics",
+        "Not accounting for the two coupled ODEs (beam rotation + ball translation)"
+      ],
+      "solution_method": "Write torque balance on beam: J*phi_ddot = Km*i, giving phi(s) = Km*i(s)/(J*s^2). Write force balance on ball along beam: m*x_ddot = -m*g*phi - b*x_dot (linearized, small phi). Take Laplace and substitute phi(s) to get X(s)/I(s) = -m*g*Km / [J*s^2*(m*s^2 + b*s + m*g)] — accept sign convention variants.",
+      "key_formulas": [
+        "Tm = Km*i",
+        "J*phi_ddot = Tm  (beam torque equation)",
+        "m*x_ddot + b*x_dot = -m*g*phi  (ball force balance, linearized)",
+        "phi(s) = Km*I(s) / (J*s^2)",
+        "X(s)/I(s) = -m*g*Km / [J*s^2*(m*s^2 + b*s)]  (if gravity term in denominator handled differently — verify sign)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "Find the transfer function theta1(s)/T1(s) for the gear-train + rotational mechanical system shown in Fig. Q2. The system has gear pairs (N1,N2) and (N3,N4), with inertias J1,J3,J5 and dampers D1,D2 and inertia/damper J4 on the output shaft.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "rotational-gear-train-TF",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect gear ratio reflection of inertia and damping (must square the ratio)",
+        "Forgetting to reflect all downstream elements through both gear stages",
+        "Sign errors when combining reflected inertias"
+      ],
+      "solution_method": "Reflect all inertias and dampers to the input shaft using gear ratios n = N2/N1 etc. (reflected J = J_load*(n)^2). Write single equivalent torque equation at shaft 1: (J_eq*s^2 + D_eq*s)*theta1(s) = T1(s). TF = 1/(J_eq*s^2 + D_eq*s).",
+      "key_formulas": [
+        "J_reflected = J_load * (N_in/N_out)^2",
+        "D_reflected = D_load * (N_in/N_out)^2",
+        "theta1(s)/T1(s) = 1 / (J_eq*s^2 + D_eq*s)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3a",
+      "stem": "For the block diagram in Fig. Q3(a) — a multi-loop system with forward blocks G1, G2, G3, G4 and feedback blocks H1, H2 — find the closed-loop transfer function G(s) = C(s)/R(s) using block diagram reduction technique.",
+      "topics": ["block-diagram-reduction"],
+      "primary_topic": "block-diagram-reduction",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "multi-loop-block-diagram-reduction",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Wrong order of loop elimination (inner loops first)",
+        "Sign error at summing junctions (missing negative feedback sign)",
+        "Incorrectly moving a takeoff/summing point past a block"
+      ],
+      "solution_method": "Eliminate inner feedback loop (G2, G3, H2) first to get an equivalent block, then combine with G1 and G4 forward path, and finally close outer feedback loop with H1 using standard formula C/R = G_forward / (1 + G_forward*H).",
+      "key_formulas": [
+        "Closed-loop TF = G_fwd / (1 + G_fwd * H)",
+        "Series combination: G_eq = G_a * G_b",
+        "Parallel combination: G_eq = G_a + G_b"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3b",
+      "stem": "For the block diagram in Fig. Q3(b) — a multi-loop system with forward blocks G1, G2, G3 and feedback blocks G4, H1, H2 — find the closed-loop transfer function G(s) = C(s)/R(s) using block diagram reduction technique.",
+      "topics": ["block-diagram-reduction"],
+      "primary_topic": "block-diagram-reduction",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "multi-loop-block-diagram-reduction",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect identification of positive vs negative summing junctions",
+        "Misidentifying G4 as a forward path vs a feedback element",
+        "Wrong sequence of loop reduction"
+      ],
+      "solution_method": "Identify and reduce the inner loop involving G2 and H1 first. Then address the loop with G4 (which feeds back from output). Combine remaining blocks in series and apply outer loop formula with H2 to get C(s)/R(s).",
+      "key_formulas": [
+        "Closed-loop TF = G_fwd / (1 + G_fwd * H)",
+        "For positive feedback: G_fwd / (1 - G_fwd * H)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4",
+      "stem": "Write the differential equations of motion describing the mechanical system in Fig. Q4 (three masses M1, M2, M3 connected by springs k1, k2 and dampers b1, b2, b3 with displacement x1, x2, x3 and applied force f(t) on M3). Also draw the analogous electrical model using force-voltage and force-current analogy.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "translational-mechanical-EOM-and-analogy",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Missing relative displacement/velocity terms in spring/damper forces between adjacent masses",
+        "Incorrect force-voltage analogy mapping (force↔voltage, mass↔inductance, damper↔resistance, spring↔1/capacitance)",
+        "Incorrect force-current analogy mapping (force↔current, mass↔capacitance, damper↔1/resistance, spring↔1/inductance)",
+        "Not writing separate equations for each mass"
+      ],
+      "solution_method": "Apply Newton's second law to each mass separately: M1*x1_ddot = -b1*x1_dot - k1*x1 + b2*(x2_dot-x1_dot) + k2*(x2-x1) — adjust per actual connectivity from diagram. For FV analogy replace mass→L, damper→R, spring→1/C, force→V, velocity→current; for FC analogy replace mass→C, damper→1/R, spring→1/L, force→I, velocity→voltage.",
+      "key_formulas": [
+        "M*x_ddot + b*x_dot + k*x = f(t)  (per mass, with relative terms for coupled elements)",
+        "FV analogy: F↔V, m↔L, b↔R, 1/k↔C, x_dot↔i",
+        "FC analogy: F↔I, m↔C, b↔1/R, 1/k↔L, x_dot↔V"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 20 January 2026. 4 questions (Q3 split into 3a and 3b giving 5 entries). Diagrams for Q1 (ball-beam), Q2 (gear train), Q3a/b (block diagrams), and Q4 (3-mass mechanical system) are image-only; stems faithfully paraphrased from visible text and figure labels."
+}

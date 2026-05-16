@@ -1,0 +1,96 @@
+{
+  "schema_version": 3,
+  "course_slug": "control-systems-2026",
+  "course_name": "Control Systems",
+  "course_code": "EEE/INSTR/ECE F242",
+  "institution": "BITS Pilani",
+  "academic_term": "Second Semester 2025-26 (Spring 2026)",
+  "ingested_at": "2026-05-05",
+  "course_structure": "modular",
+  "domain_prerequisites": [
+    {"subject": "calculus", "level": "undergraduate"},
+    {"subject": "complex-variables", "level": "undergraduate"},
+    {"subject": "linear-algebra", "level": "introductory"},
+    {"subject": "differential-equations", "level": "undergraduate"},
+    {"subject": "laplace-transform", "level": "undergraduate"}
+  ],
+  "evaluation_components": [
+    {
+      "id": "mid-sem",
+      "name": "Mid-Semester Test",
+      "type": "written_exam",
+      "weight": 0.30,
+      "marks": 60,
+      "date": "2026-03-10",
+      "duration_min": 90,
+      "format": "open_book",
+      "scope": {"type": "units", "ids": [1, 2, 3, 4, 5]},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "Open book; mid-sem covers modules 1-5 inclusive (intro through time-domain analysis). Already past — solution + marking scheme available."
+    },
+    {
+      "id": "comprehensive",
+      "name": "Comprehensive Examination",
+      "type": "written_exam",
+      "weight": 0.45,
+      "marks": 90,
+      "date": "2026-05-06",
+      "duration_min": 180,
+      "format": "closed_book",
+      "scope": {"type": "all"},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "CLOSED BOOK. 3 hours. Covers all 11 modules. THE MAIN EVENT — exam is tomorrow forenoon."
+    },
+    {
+      "id": "quiz",
+      "name": "Quizzes",
+      "type": "quiz",
+      "weight": 0.15,
+      "marks": 30,
+      "date": "rolling",
+      "duration_min": 10,
+      "format": "closed_book",
+      "scope": {"type": "rolling"},
+      "recurrence": "per-tutorial",
+      "best_of": 5,
+      "notes": "Best 5 of 6 quizzes; held during tutorial hours. All 6 already taken — solutions available."
+    },
+    {
+      "id": "assignment",
+      "name": "Assignment",
+      "type": "assignment",
+      "weight": 0.10,
+      "marks": 20,
+      "date": "tba",
+      "duration_min": null,
+      "format": "open_book",
+      "scope": {"type": "all"},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "Continuous; open book."
+    }
+  ],
+  "modules": [
+    {"id": 1, "name": "Introduction", "lectures": "1-2", "topic_ids": ["introduction"], "textbook_ref": "Ch.1"},
+    {"id": 2, "name": "Mathematical Modelling", "lectures": "3-8", "topic_ids": ["mathematical-modelling", "block-diagram-reduction", "signal-flow-graph", "feedback-properties"], "textbook_ref": "Ch.2-3"},
+    {"id": 3, "name": "Control Systems Components", "lectures": "9-10", "topic_ids": ["control-components"], "textbook_ref": "Ch.4"},
+    {"id": 4, "name": "Stability analysis (RH)", "lectures": "11-12", "topic_ids": ["stability-RH"], "textbook_ref": "Ch.6"},
+    {"id": 5, "name": "Time Domain Analysis", "lectures": "13-19", "topic_ids": ["time-domain-response", "time-domain-specs", "steady-state-error", "PID-controller"], "textbook_ref": "Ch.6, Ch.11"},
+    {"id": 6, "name": "Root Locus Technique", "lectures": "20-22", "topic_ids": ["root-locus"], "textbook_ref": "Ch.7"},
+    {"id": 7, "name": "Frequency Domain Analysis-I", "lectures": "23-28", "topic_ids": ["polar-plot", "nyquist-criterion", "gain-phase-margin"], "textbook_ref": "Ch.8-9"},
+    {"id": 8, "name": "Frequency Domain Analysis-II", "lectures": "29-32", "topic_ids": ["bode-plot", "TF-from-bode", "non-minimum-phase", "bode-design"], "textbook_ref": "Ch.8-10"},
+    {"id": 9, "name": "Model Order Reduction", "lectures": "33-34", "topic_ids": ["model-order-reduction"], "textbook_ref": "Lecture Notes"},
+    {"id": 10, "name": "Discrete-time Systems", "lectures": "35-37", "topic_ids": ["discrete-time-rep", "sampling-reconstruction", "discrete-stability"], "textbook_ref": "Ch.11"},
+    {"id": 11, "name": "State Space Modelling", "lectures": "38-40", "topic_ids": ["state-space-modelling", "state-space-conversion", "state-space-solution"], "textbook_ref": "Ch.12 initial parts"}
+  ],
+  "topics_pending_aggregation": "Will be filled from chunks/ after all parsers complete",
+  "exam_questions_pending_aggregation": "Will be filled from chunks/ after all parsers complete",
+  "ingest_notes": [
+    "Skipped duplicate: Compre paper - SET 1.pdf (md5-identical to Compre paper - SET 1 - 2020.pdf)",
+    "Skipped pre-2010 .doc files: 2004-05, 2008-09 .doc variants — superseded by available PDFs and have inverse-age-weight ~0",
+    "Skipped 2016-17 .jpg image-only paper — low ROI for closed-book prep with <24h budget",
+    "Subagent-write sandboxing forced state to live at workspace .teach-state/ rather than ~/.claude/teach/control-systems-2026/"
+  ]
+}

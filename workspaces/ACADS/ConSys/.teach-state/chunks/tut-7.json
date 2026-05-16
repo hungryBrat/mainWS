@@ -1,0 +1,80 @@
+{
+  "source_file": "Tut 7.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 7",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "The open loop transfer function of a system with unity feedback is given by G(s) = K/(s(s+2)). Determine the gain K such that closed loop system has a damping ratio of 0.316. For this value of K, find rise time (0% to 100%), percentage overshoot, peak value of output, peak time and settling time (2% tolerance band), when the system is subjected to a step input of 12 units.",
+      "topics": ["time-domain-specs", "time-domain-response"],
+      "primary_topic": "time-domain-specs",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "find-K-from-zeta-compute-specs",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Using 0% to 100% rise time formula but applying the 10%-90% formula instead",
+        "Forgetting to scale peak output by the step magnitude (12 units, not unit step)",
+        "Incorrect ωn from characteristic equation — missing the relationship ωn² = K"
+      ],
+      "solution_method": "From CLTF characteristic equation s²+2s+K=0, equate 2ζωn=2 and ωn²=K; with ζ=0.316 get ωn and K. Then apply standard 2nd-order formulas: Mp=exp(-πζ/√(1-ζ²)), tp=π/ωd, ts=4/(ζωn), tr=(π-β)/ωd where β=cos⁻¹ζ. Scale peak output as (1+Mp)×12.",
+      "key_formulas": [
+        "ωn² = K, 2ζωn = 2",
+        "Mp(%) = exp(-πζ/√(1-ζ²)) × 100",
+        "tp = π/ωd, ωd = ωn√(1-ζ²)",
+        "ts ≈ 4/(ζωn) for 2% band",
+        "tr = (π - β)/ωd, β = cos⁻¹ζ",
+        "Peak output = (1 + Mp) × step_amplitude"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "A unity-feedback closed loop control system is to be designed to meet the following specifications: 30% > Mp(%) > 15%, ts (2% tolerance band) < 0.75 sec. Mark the area in the s-plane in which the roots of the system's characteristic equation must lie. Assume the closed loop system is of second order.",
+      "topics": ["time-domain-specs"],
+      "primary_topic": "time-domain-specs",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "s-plane-region-from-specs",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing Mp bounds with ζ direction — higher Mp means lower ζ",
+        "Not drawing both the radial lines (ζ bounds) and vertical line (σ bound) together",
+        "Forgetting that the valid region must satisfy ALL constraints simultaneously (intersection, not union)"
+      ],
+      "solution_method": "Convert Mp bounds to ζ bounds using ζ = -ln(Mp/100)/√(π²+ln²(Mp/100)): Mp=15% → ζ≈0.517, Mp=30% → ζ≈0.358. Convert ts bound to σ bound: σ = ζωn > 4/ts = 4/0.75 ≈ 5.33. Plot two radial lines at angles cos⁻¹(0.358) and cos⁻¹(0.517) from negative real axis, and a vertical line at σ=5.33; the feasible region is the intersection to the left of σ=5.33 between the two radial lines.",
+      "key_formulas": [
+        "ζ = -ln(Mp/100) / √(π² + ln²(Mp/100))",
+        "σ = ζωn ≥ 4/ts (2% criterion)",
+        "Angle of radial lines: θ = cos⁻¹(ζ)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3",
+      "stem": "For the system shown in Fig. Q3 (forward path: K/(Js+B) cascaded with 1/s, inner velocity feedback Kh), determine the values of K and Kh so that the maximum overshoot in the unit step response is 0.2 and the peak time is 1 sec. With these values of K and Kh, obtain the rise time and settling time. Assume J=1 kg-m², B=1 N-m/rad/sec.",
+      "topics": ["time-domain-specs", "time-domain-response", "PID-controller"],
+      "primary_topic": "time-domain-specs",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "design-K-Kh-from-overshoot-tp",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Not correctly reducing the inner velocity-feedback loop before computing the overall CLTF",
+        "Using Mp=0.2% instead of Mp=0.2 (20%) in the ζ formula",
+        "Forgetting B in the denominator when substituting J and B values"
+      ],
+      "solution_method": "Reduce inner loop: inner CLTF = (K/(Js+B)) / (1 + Kh·K/(Js+B)) = K/(Js + B + KKh). Overall CLTF = [K/(Js+B+KKh)] / (s + K/(Js+B+KKh)) = K / (Js²+(B+KKh)s+K). With J=1, B=1: CLTF = K/(s²+(1+KKh)s+K). Equate ωn²=K and 2ζωn=(1+KKh). From Mp=0.2: ζ=0.456; from tp=1: ωd=π, ωn=π/√(1-ζ²)≈3.53. Then K=ωn²≈12.46, KKh=(2ζωn-1), solve Kh. Compute remaining specs from standard formulas.",
+      "key_formulas": [
+        "Mp = exp(-πζ/√(1-ζ²))",
+        "tp = π/ωd = π/(ωn√(1-ζ²))",
+        "ωn² = K, 2ζωn = 1 + KKh",
+        "ts ≈ 4/(ζωn), tr = (π - cos⁻¹ζ)/ωd"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Single-page tutorial dated 24 February 2026. All 3 problems are second-order time-domain design/analysis. Q3 involves a tachometer/velocity-feedback inner loop requiring block-diagram reduction before applying standard 2nd-order formulas."
+}

@@ -1,0 +1,54 @@
+{
+  "source_file": "Quiz 2_CONSYS (Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 2",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1",
+      "stem": "For the signal flow graph shown in Fig. Q1 (two forward paths P1=G1G2G3 and P2=G4, with feedback loops involving H1 and H2), find the transfer function C/R.",
+      "topics": ["signal-flow-graph"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 4,
+      "bloom_level": "apply",
+      "problem_type": "mason-gain-sfg-two-paths",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Missing the non-touching loop pair (L1L3) in the graph determinant delta",
+        "Incorrect cofactors delta1/delta2 — failing to check which loops touch each forward path",
+        "Sign error on loop gains (H1 and H2 feedback signs)"
+      ],
+      "solution_method": "Identify two forward paths (P1=G1G2G3, P2=G4) and three loops (L1=-G2H1, L2=-G1G2G3H2, L3=-G4H2). Compute graph determinant Delta=1-(L1+L2+L3)+(L1L3) and cofactors Delta1=1, Delta2=(1+G2H1). Apply Mason's gain formula C/R=(P1*Delta1+P2*Delta2)/Delta.",
+      "key_formulas": [
+        "C/R = sum(Pk * Deltak) / Delta",
+        "Delta = 1 - sum(Lm) + sum(non-touching loop products) - ...",
+        "C/R = [G1G2G3 + G4(1+G2H1)] / [1 + G2H1 + G1G2G3H2 + G4H2 + G2G4H1H2]"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-2",
+      "stem": "For a transfer function T(s) = alpha/(s^2 + 2s + alpha), find the sensitivity S_alpha^T for alpha=2 at omega=0.1 rad/s.",
+      "topics": ["feedback-properties"],
+      "primary_topic": "feedback-properties",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "sensitivity-function-evaluate-at-frequency",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Differentiating T w.r.t. alpha incorrectly — forgetting alpha appears in both numerator and denominator",
+        "Not substituting s=jw before computing the magnitude",
+        "Arithmetic error in the magnitude: missing the sqrt(4+w^2) factor in numerator"
+      ],
+      "solution_method": "Compute S_alpha^T = (dT/dalpha)*(alpha/T). Differentiate T to get S_alpha^T = s(s+2)/(s^2+2s+alpha). Substitute s=jw and alpha=2, then evaluate magnitude at w=0.1 to get approximately 0.1.",
+      "key_formulas": [
+        "S_alpha^T = (dT/dalpha) * (alpha/T)",
+        "S_alpha^T = s(s+2) / (s^2 + 2s + alpha)",
+        "|S_alpha^T| = w*sqrt(4+w^2) / sqrt((2-w^2)^2 + 4w^2)"
+      ],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Single-page quiz, 6 marks total, 12-minute duration (date 10.02.2026). Marking annotations visible: 1M per sub-step. Q2 final answer |S|≈0.1 confirmed in solution."
+}

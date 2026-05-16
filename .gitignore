@@ -1,0 +1,192 @@
+# =============================================================================
+# mainWS .gitignore
+# Coordination workspace — covers OS junk, Claude local state, ephemeral skill
+# outputs, and the toolchains used by child workspaces (Python, Node, ROS 2,
+# PlatformIO/ESP32). PDFs are intentionally tracked per repo policy.
+# =============================================================================
+
+# --- Secrets / credentials --------------------------------------------------
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*.crt
+*.cer
+*.der
+*.jks
+*.keystore
+*_rsa
+*_dsa
+*_ed25519
+*_ecdsa
+id_rsa*
+credentials
+credentials.*
+secrets
+secrets.*
+*.secret
+*.secrets
+auth.json
+.netrc
+
+# --- Claude Code local state ------------------------------------------------
+# Per-workspace local settings should not be shared.
+.claude/settings.local.json
+**/.claude/settings.local.json
+.claude/.credentials.json
+**/.claude/.credentials.json
+.claude/projects/
+.claude/todos/
+.claude/shell-snapshots/
+.claude/statsig/
+
+# --- Ephemeral / scratch ----------------------------------------------------
+# Per CLAUDE.md: .tmp is write-only ephemeral; scratch is non-persistent.
+.tmp/
+scratch/
+**/.tmp/
+**/scratch/
+*.tmp
+*.bak
+*.swp
+*.swo
+*~
+
+# --- OS metadata ------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Editor / IDE -----------------------------------------------------------
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.iml
+*.sublime-workspace
+*.sublime-project
+.project
+.classpath
+.settings/
+nbproject/
+
+# --- Logs -------------------------------------------------------------------
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Python -----------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+.coverage.*
+htmlcov/
+.hypothesis/
+.ipynb_checkpoints/
+
+# Virtual envs
+venv/
+.venv/
+env/
+.env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Node / JS --------------------------------------------------------------
+node_modules/
+.npm
+.yarn/
+.pnp.*
+.next/
+.nuxt/
+.cache/
+.parcel-cache/
+.turbo/
+.vercel
+.svelte-kit/
+coverage/
+
+# --- ROS 2 / colcon (workspaces/solo) ---------------------------------------
+build/
+install/
+log/
+.colcon/
+*.bag
+*.db3
+*.mcap
+
+# --- PlatformIO / ESP32 (workspaces/solo firmware) --------------------------
+.pio/
+.pioenvs/
+.piolibdeps/
+.vscode/c_cpp_properties.json
+.vscode/ipch/
+
+# --- C/C++ ------------------------------------------------------------------
+*.o
+*.obj
+*.a
+*.lib
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+
+# --- LaTeX (academic workspaces) --------------------------------------------
+*.aux
+*.lof
+*.lot
+*.fls
+*.toc
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+*.out
+*.run.xml
+*.bcf
+
+# --- Misc binary / cache ----------------------------------------------------
+*.iso
+*.dmg
+.cache/
+__MACOSX/

@@ -1,0 +1,276 @@
+{
+  "source_file": "Control Systems 2009-10 Comprehensive (2).pdf",
+  "content_type": "exam_paper",
+  "year_label": "2009-10 variant",
+  "year_canonical": 2010,
+  "evaluation_component": "comprehensive",
+  "questions": [
+    {
+      "id": "Q-2010v2-compre-1a",
+      "stem": "An armature controlled DC servo motor controls liquid level H in a tank via a gear train (ratio 1:5). Given: KA=10 V/V, KP=5 V/rad, KT=1 Nm/A, Kb=1 V/rad/s, Ra=1 Ω, Jv=12.5 kg.m², Bv=6.25 Nm/rad/s, Jm=0.5 kg.m², C=1, R=2, KV=0.5, Kf=1 rad/m. Draw the block diagram.",
+      "topics": ["mathematical-modelling", "control-components", "block-diagram-reduction"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 10,
+      "bloom_level": "apply",
+      "problem_type": "block-diagram-electromechanical-liquid-level",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Missing gear train reflection of inertia/friction to motor shaft",
+        "Incorrect tank dynamics (ignoring R, C in liquid level block)",
+        "Forgetting float linkage Kf in feedback path"
+      ],
+      "solution_method": "Model each subsystem: error amplifier (KA, KP), DC motor armature (KT/(Ra(Jm_eff s + Bm_eff))), gear train (1/5 speed reduction, reflected inertia Jm_eff = Jm + Jv/25), valve (KV), tank (1/(Cs+1/R)), float feedback (Kf). Connect in cascade with unity feedback via Kf.",
+      "key_formulas": [
+        "J_eff = Jm + Jv/N² where N=5",
+        "Motor TF: θm(s)/Ea(s) = KT / [s(Ra·J_eff·s + Ra·B_eff + Kb·KT)]",
+        "Tank: H(s)/Qi(s) = R/(RCs+1)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-1b",
+      "stem": "For the same liquid-level servo system, determine the transfer function ΔH(s)/Δθ_R(s).",
+      "topics": ["mathematical-modelling", "block-diagram-reduction"],
+      "primary_topic": "block-diagram-reduction",
+      "marks": 4,
+      "bloom_level": "apply",
+      "problem_type": "closed-loop-TF-derivation-numerical",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Arithmetic error in reflected inertia/friction",
+        "Dropping gear ratio N in valve angle relationship"
+      ],
+      "solution_method": "Substitute numerical values into block diagram, reduce to single forward path and feedback. Apply Mason's or standard reduction: TF = G(s)/(1+G(s)H(s)) with G and H from part (a).",
+      "key_formulas": [
+        "CLTF = G(s) / (1 + G(s)·H(s))"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-1c",
+      "stem": "For the liquid-level servo system, determine whether the negative real part of the closed-loop poles are more negative than -1.",
+      "topics": ["stability-RH", "mathematical-modelling"],
+      "primary_topic": "stability-RH",
+      "marks": 6,
+      "bloom_level": "analyze",
+      "problem_type": "rh-shifted-axis-pole-location",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Applying RH to un-shifted CE instead of substituting s = p-1",
+        "Sign error in shifted characteristic equation coefficients"
+      ],
+      "solution_method": "Obtain closed-loop characteristic equation from part (b). Substitute s = (p-1) and apply Routh-Hurwitz to the resulting polynomial in p; if all entries in first column positive, all poles have real part < -1.",
+      "key_formulas": [
+        "Axis shift: s → p - 1",
+        "All first-column RH entries > 0 ⟹ all poles have Re(s) < -1"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-1d",
+      "stem": "Tabulate the sequence of signals to rotate a permanent magnet stepper motor (coils A, B, C, D) in both directions by 90° in each step. Starting position: A & D ON, B & C OFF.",
+      "topics": ["control-components"],
+      "primary_topic": "control-components",
+      "marks": 10,
+      "bloom_level": "recall",
+      "problem_type": "stepper-motor-sequence-table",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Reversing CW vs CCW sequence direction",
+        "Incorrect step size (confusing full-step vs half-step)"
+      ],
+      "solution_method": "For a 4-coil PM stepper with 90° per step: CW sequence cycles through (A,D ON), (A,B ON), (B,C ON), (C,D ON); CCW reverses. Tabulate 4 steps in each direction starting from initial state.",
+      "key_formulas": [
+        "Step angle = 360°/number of rotor teeth (for PM stepper, 4-phase full-step = 90°/step)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-2a",
+      "stem": "Sketch the Nyquist plot for G(s)H(s) = K(s+3)(s+4) / [s(s-4)(s+5)], choosing the appropriate Nyquist contour. Determine the range of K (K>0) for closed-loop stability and the Gain Margin for K=1.",
+      "topics": ["nyquist-criterion", "gain-phase-margin"],
+      "primary_topic": "nyquist-criterion",
+      "marks": 25,
+      "bloom_level": "analyze",
+      "problem_type": "nyquist-plot-rhp-pole-stability-range",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Misidentifying P (open-loop RHP poles): s=4 is RHP pole, P=1",
+        "Wrong encirclement count due to RHP pole at origin indentation direction",
+        "Incorrect gain crossover for GM calculation"
+      ],
+      "solution_method": "Note OLTF has one RHP pole (s=4) and one pole at origin: P=1. Indent Nyquist contour at s=0. Trace G(jω) for ω: 0+ to ∞, map semicircle at infinity, and mirror for negative ω. Count net encirclements N of -1+j0. Use N = Z - P → Z = N + 1; for stability Z=0 so N must equal -1 (one CCW encirclement). Find K range ensuring this. For GM at K=1: find ω where ∠G(jω)=-180°, compute |G(jω)| and GM = 1/|G(jω_pc)|.",
+      "key_formulas": [
+        "N = Z - P (Z: CL RHP poles, P: OL RHP poles)",
+        "GM = 1/|G(jω_pc)| where ∠G(jω_pc) = -180°"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-2b",
+      "stem": "The Nyquist plot for a system with no open-loop RHP poles is shown (figure-8 shaped locus). Comment on closed-loop stability using Nyquist criterion when (i) point x is -1+j0 and (ii) point x' is -1+j0.",
+      "topics": ["nyquist-criterion"],
+      "primary_topic": "nyquist-criterion",
+      "marks": 5,
+      "bloom_level": "analyze",
+      "problem_type": "nyquist-encirclement-stability-comment",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing clockwise vs counterclockwise encirclements for figure-8 plot",
+        "Forgetting P=0 so N=Z directly"
+      ],
+      "solution_method": "P=0, so Z=N. For each critical point location, count net CW encirclements of that point by the Nyquist locus. If N=0, system is stable (Z=0); if N>0, unstable. Figure-8 locus means the two loops encircle in opposite senses — outer vs inner point gives different N.",
+      "key_formulas": [
+        "Z = N + P, P = 0 → Z = N"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-3a",
+      "stem": "For the system with OLTF K(1+a/s)·4/[(s+4)] and feedback 2/s, draw neat root contour sketches for a=3 and a=5, showing all steps (0 < K < ∞).",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 12,
+      "bloom_level": "apply",
+      "problem_type": "root-locus-sketch-parametric-a",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect open-loop poles/zeros after block diagram reduction",
+        "Forgetting the 2/s inner feedback loop modifies the effective plant",
+        "Missing breakaway/break-in point calculation"
+      ],
+      "solution_method": "First reduce the inner feedback loop (plant 4/(s+4) with feedback 2/s) to get equivalent forward TF. Then combine with controller K(1+a/s) = K(s+a)/s. Find OL poles and zeros, apply standard RL rules: asymptotes, centroid, breakaway, jω crossing. Sketch separately for a=3 and a=5.",
+      "key_formulas": [
+        "Inner loop TF: [4/(s+4)] / [1 + 4·(2/s)/(s+4)] = 4s / (s²+4s+8)",
+        "RL asymptote angle: (2k+1)180° / (n-m)",
+        "Centroid: σ = (Σpoles - Σzeros)/(n-m)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-3b",
+      "stem": "For the same system, determine the range of 'a' for which the system is stable for all 0 < K < ∞.",
+      "topics": ["stability-RH", "root-locus"],
+      "primary_topic": "stability-RH",
+      "marks": 5,
+      "bloom_level": "analyze",
+      "problem_type": "stability-range-parameter-rh",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not accounting for both K→0 and K→∞ stability limits",
+        "Forgetting inner loop poles when writing closed-loop CE"
+      ],
+      "solution_method": "Write overall closed-loop characteristic equation in terms of K and a. Apply Routh-Hurwitz; all first-column elements must be positive for all K>0. Solve inequalities to find valid range of a.",
+      "key_formulas": [
+        "RH stability: all first column entries > 0"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-3c",
+      "stem": "For the same system, determine the steady-state error for an input of (t²/2)u(t).",
+      "topics": ["steady-state-error"],
+      "primary_topic": "steady-state-error",
+      "marks": 5,
+      "bloom_level": "apply",
+      "problem_type": "sse-parabolic-input-type-check",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Miscounting system type (number of integrators in OL TF)",
+        "Using Kv instead of Ka for parabolic input"
+      ],
+      "solution_method": "Determine system type by counting open-loop integrators. For parabolic input r(t)=t²/2 (R(s)=1/s³), ess = 1/Ka where Ka = lim s²→0 s²·G(s). If type < 2, error is infinite.",
+      "key_formulas": [
+        "Ka = lim_{s→0} s² G(s)",
+        "ess = 1/Ka for parabolic input (type-2 system)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-3d",
+      "stem": "For the system with a=1.5, a certain K gives settling time (2% band) = 10 s and peak overshoot = 43% for the dominant pole pair. Determine K and the location of the third closed-loop pole.",
+      "topics": ["time-domain-specs", "root-locus"],
+      "primary_topic": "time-domain-specs",
+      "marks": 8,
+      "bloom_level": "analyze",
+      "problem_type": "find-K-from-ts-Mp-dominant-poles",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Using wrong ts formula (4/σ vs 4/ζωn)",
+        "Not verifying dominant pole assumption for third pole location"
+      ],
+      "solution_method": "From Mp=43%: ζ = -ln(Mp/100)/√(π²+ln²(Mp/100)) ≈ 0.21. From ts=10 s (2% criterion): σ = ζωn = 4/ts = 0.4. Find ωn = σ/ζ. Locate dominant poles s = -σ ± jωd. Use CE with a=1.5 to find K from dominant poles, then obtain third pole by polynomial division or Vieta's formula.",
+      "key_formulas": [
+        "ζ = -ln(Mp/100) / √(π² + ln²(Mp/100))",
+        "ts ≈ 4/(ζωn) for 2% criterion",
+        "Sum of closed-loop poles = -sum of CE coefficient (Vieta)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-4ia",
+      "stem": "For G(s)H(s) = K(s+5) / [s²(s+50)], draw the asymptotic Bode magnitude and phase plots for K=80. Determine gain crossover frequency, phase crossover frequency, Gain Margin, and Phase Margin.",
+      "topics": ["bode-plot", "gain-phase-margin"],
+      "primary_topic": "bode-plot",
+      "marks": 25,
+      "bloom_level": "apply",
+      "problem_type": "bode-plot-gm-pm-type2-system",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect initial slope (-40 dB/dec for type-2) starting magnitude",
+        "Phase of double integrator (-180°) not included in total phase",
+        "Confusing gain crossover (|G|=1) with phase crossover (∠G=-180°)"
+      ],
+      "solution_method": "Express in Bode standard form. Type-2 system: initial slope -40 dB/dec. Corner frequencies at ω=5 (zero, +20 dB/dec change) and ω=50 (pole, -20 dB/dec change). Compute 0 dB crossing (ωgc) and -180° crossing (ωpc). GM = -20log|G(jωpc)|, PM = 180° + ∠G(jωgc).",
+      "key_formulas": [
+        "20log K at ω=1 adjusted for double integrator: magnitude = 20log(K·5/50) at corner correction",
+        "Phase: -180° + arctan(ω/5) - arctan(ω/50)",
+        "GM = 20log(1/|G(jωpc)|), PM = 180° + ∠G(jωgc)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-4ib",
+      "stem": "For G(s)H(s) = K(s+5)/[s²(s+50)], determine the value of K for the system to have a phase margin of 45°.",
+      "topics": ["bode-design", "gain-phase-margin"],
+      "primary_topic": "bode-design",
+      "marks": 5,
+      "bloom_level": "apply",
+      "problem_type": "find-K-for-target-PM",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not re-computing gain crossover frequency after K adjustment",
+        "Using phase margin formula at wrong frequency"
+      ],
+      "solution_method": "Find ωgc where PM=45°: solve ∠G(jω)=-135°, i.e. arctan(ω/5)-arctan(ω/50)=45°. At that ωgc, set |G(jωgc)|=1 and solve for K.",
+      "key_formulas": [
+        "∠G(jωgc) = -180° + 45° = -135°",
+        "|G(jωgc)| = 1 → K = ωgc² · |jωgc+50| / |jωgc+5|"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2010v2-compre-4ii",
+      "stem": "The asymptotic Bode magnitude plot shows: initial slope 0 dB/dec rising to +20 dB/dec at ω=1, 20 dB magnitude at ω=1 to ω=10, then 0 dB/dec from ω=10 to ω=30, then -20 dB/dec and -40 dB/dec at ω=30. Determine the transfer function.",
+      "topics": ["TF-from-bode"],
+      "primary_topic": "TF-from-bode",
+      "marks": 5,
+      "bloom_level": "analyze",
+      "problem_type": "identify-TF-from-bode-magnitude",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Misreading slope changes as pole/zero at wrong frequency",
+        "Forgetting DC gain from 20 dB initial magnitude",
+        "Double pole vs two separate poles at ω=30"
+      ],
+      "solution_method": "Read initial magnitude (0 dB/dec, 20 dB → DC gain=10). Zero at ω=1 (+20 dB/dec change). Pole at ω=10 (-20 dB/dec restores to 0). Double pole at ω=30 (-40 dB/dec). Assemble: TF = K(1+s/1) / [(1+s/10)(1+s/30)²] and find K from initial 20 dB.",
+      "key_formulas": [
+        "Zero at ωz → factor (1 + s/ωz)",
+        "Pole at ωp → factor 1/(1 + s/ωp)",
+        "Initial 20 dB → K = 10"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "MM=120, 4 questions. Q2(a) OLTF has a RHP pole at s=4 making it a conditionally stable / non-minimum phase Nyquist problem. Q3 block diagram has an inner feedback loop (2/s) and PI-like controller K(1+a/s). Q4(i) is type-2 system requiring semi-log graph sheet. Marks split: Q1[10+4+6+10]=30, Q2[25+5]=30, Q3[12+5+5+8]=30, Q4[25+5]=30."
+}

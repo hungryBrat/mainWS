@@ -1,0 +1,72 @@
+{
+  "source_file": "Quiz 1_CONSYS(Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 1",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1a",
+      "stem": "For the translational mechanical system with masses M1 and M2 connected by spring K1, spring K2, and damper B (M1 grounded via K1, M2 grounded via K2, B between M1 and M2, force f(t) applied to M1): Write the differential equations governing the dynamic behavior of the system.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "write-EOM-translational-system",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Wrong sign on damper coupling term B(x1_dot - x2_dot) — missing the relative velocity coupling",
+        "Forgetting K2*x2 ground spring on M2 equation",
+        "Applying force f(t) to wrong mass"
+      ],
+      "solution_method": "Apply Newton's second law to each mass separately. For M1: M1*x1'' + B*(x1' - x2') + K1*x1 = f(t). For M2: M2*x2'' + B*(x2' - x1') + K2*x2 = 0. The damper B couples the two equations through relative velocity.",
+      "key_formulas": [
+        "M*x'' + B*(x1' - x2') + K*x = F (Newton's law for coupled translational system)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1b",
+      "stem": "For the same translational mechanical system with M1=M2=1 kg, K1=K2=1 N/m, B=1 N-s/m, find the transfer function G(s) = X2(s)/F(s).",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "derive-TF-coupled-mass-cramer",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Sign error in Cramer's rule numerator determinant",
+        "Arithmetic error expanding (s^2+s+1)^2 - s^2",
+        "Forgetting to negate the off-diagonal term when computing X2 via Cramer's rule"
+      ],
+      "solution_method": "Take Laplace transform of both ODEs, substitute numerical values to get (s^2+s+1)*X1 - s*X2 = F and -s*X1 + (s^2+s+1)*X2 = 0. Solve for X2 using Cramer's rule: X2 = -s*F / [(s^2+s+1)^2 - s^2]. Expand denominator: s^4+2s^3+2s^2+2s+1. Result: G(s) = s / (s^4+2s^3+2s^2+2s+1).",
+      "key_formulas": [
+        "G(s) = X2(s)/F(s) = s / (s^4 + 2s^3 + 2s^2 + 2s + 1)",
+        "Cramer's rule: X2 = det([A11, F; A21, 0]) / det(A)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1c",
+      "stem": "For the same translational mechanical system (M1, M2, K1, K2, B), draw the equivalent electrical analogous circuit using the force-voltage (F-V) analogy.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 2,
+      "bloom_level": "understand",
+      "problem_type": "draw-FV-analogous-circuit",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing F-V vs F-I analogy (mass↔inductor vs mass↔capacitor)",
+        "Incorrect topology — K (spring) maps to capacitor 1/K in series loop, not parallel",
+        "Missing the shared damper branch between the two mesh loops"
+      ],
+      "solution_method": "Apply F-V analogy: force↔voltage, velocity↔current, mass M↔inductor L, damper B↔resistor R, spring K↔capacitor 1/K. Draw two series RLC mesh loops sharing the damper resistor B. Loop 1: voltage source f(t), inductor M1, capacitor 1/K1, shared resistor B. Loop 2: inductor M2, capacitor 1/K2, shared resistor B.",
+      "key_formulas": [
+        "F-V analogy: M↔L, B↔R, K↔1/C (spring↔capacitor with value 1/K)",
+        "Force→Voltage, velocity→current, displacement→charge"
+      ],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Single-question quiz (Q1 with three sub-parts a/b/c), MM=6, Time=12 minutes, Date 27.01.2026. Entire quiz focuses on translational mechanical modelling and F-V analogy — purely Module 2 content. Sub-part (c) solution is diagram-only in the PDF."
+}

@@ -1,0 +1,80 @@
+{
+  "source_file": "Tut 1.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 1",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "Find the transfer function G(s) = I2(s)/V(s) for the circuit given in Figure Q1 (R1, L, R2, C in a ladder network with voltage source v(t)), using nodal analysis.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "electrical-TF-nodal-analysis",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect node equation setup — missing current through L or C",
+        "Forgetting to express I2 in terms of node voltages before taking Laplace"
+      ],
+      "solution_method": "Assign node voltages at the junctions between R1-L and L-R2. Write KCL at each node in the s-domain. Solve the resulting algebraic equations for I2(s)/V(s).",
+      "key_formulas": ["Z_L = sL", "Z_C = 1/(sC)", "KCL: sum of currents leaving node = 0"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "Write the differential equation governing the dynamic behaviour of the rotational mechanical system shown in Fig. Q2 (J=1 kg·m², two springs K=1 N·m/rad each, two dampers B=1 N·m·s/rad each, torque input T(t), outputs θ1 and θ2). Also find the transfer function G(s) = θ2(s)/T(s).",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "rotational-system-TF-derivation",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Missing the damper between θ2 and ground when writing the second equation",
+        "Sign error on the coupling spring/damper torque terms"
+      ],
+      "solution_method": "Apply Newton's 2nd law for rotation to each inertia. Write coupled ODEs: Jθ̈1 = T - B(θ̇1-θ̇2) - K(θ1-θ2) and Jθ̈2 = B(θ̇1-θ̇2) + K(θ1-θ2) - Bθ̇2 - Kθ2. Take Laplace, eliminate Θ1(s) to get Θ2(s)/T(s).",
+      "key_formulas": ["Js²Θ = T_net", "Laplace of θ̈ = s²Θ(s)"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3",
+      "stem": "Write the differential equation governing the dynamic behaviour of the translational mechanical system shown in Fig. Q3 (M1=M2=1 kg, K=1 N/m, fv1=fv2=fv3=fv4=1 N·s/m, force input F(t) on M1, output X2). Also find the transfer function G(s) = X2(s)/F(s).",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "translational-system-TF-derivation",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Omitting one of the viscous dampers acting on M1 (fv1 and fv2 both connect M1 to ground)",
+        "Not accounting for all dampers on M2 (fv3 coupling + fv4 to ground)"
+      ],
+      "solution_method": "Apply Newton's 2nd law to each mass. M1: M1ẍ1 = F - fv1ẋ1 - fv2ẋ1 - K(x1-x2) - fv3(ẋ1-ẋ2). M2: M2ẍ2 = K(x1-x2) + fv3(ẋ1-ẋ2) - fv4ẋ2. Take Laplace and solve for X2(s)/F(s).",
+      "key_formulas": ["Ms²X = F_net", "Spring force = K(X1-X2)", "Damper force = fv·s·(X1-X2)"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4",
+      "stem": "A rectangular bar (mass m, MI about CG = I) is supported at its two ends by springs k1 and k2. An external force F(t) is applied at distance c from CG (total half-span: a to left, b to right of CG). Bar initially horizontal, weight negligible. Find the transfer function θ(s)/F(s), where θ is CW rotation about the CG.",
+      "topics": ["mathematical-modelling"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "bar-rotation-TF-spring-support",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect moment arm for spring forces (using full length instead of a and b)",
+        "Sign error: restoring moment from springs must oppose rotation",
+        "Forgetting that the force F(t) also contributes a moment F·c about the CG",
+        "Not linearizing the spring deflection for small θ (vertical displacement ≈ aθ, bθ)"
+      ],
+      "solution_method": "For small θ, spring deflections are: left spring δ1 = aθ, right spring δ2 = bθ. Net CW moment about CG: M_net = F·c - k1·a·(aθ) - k2·b·(bθ) = F·c - (k1a² + k2b²)θ. Apply rotational Newton's law: Iθ̈ = F·c - (k1a² + k2b²)θ. Laplace: (Is² + k1a² + k2b²)Θ(s) = c·F(s), so Θ(s)/F(s) = c / (Is² + k1a² + k2b²).",
+      "key_formulas": ["Iθ̈ = ΣM_CG", "δ_spring = (arm)·θ for small angle", "Θ(s)/F(s) = c / (Is² + k1a² + k2b²)"],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Single-page tutorial, 4 problems. All problems are mathematical modelling (electrical and mechanical systems). No marks assigned. Q4 is a non-standard combined translational+rotational problem requiring small-angle linearization — flag as a higher-difficulty modelling type."
+}

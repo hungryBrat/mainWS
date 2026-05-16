@@ -1,0 +1,186 @@
+{
+  "source_file": "Control Systems 2010-11 Comprehensive.pdf",
+  "content_type": "exam_paper",
+  "year_label": "2010-11",
+  "year_canonical": 2011,
+  "evaluation_component": "comprehensive",
+  "questions": [
+    {
+      "id": "Q-2011-compre-1a",
+      "stem": "Signal flow graph of a system is shown in figure. Determine the value of A, K2, K3 so that the poles of the system lie at: -100 and -0.708 ± j0.7064. Reduce the system to second order using dominant pole pair concept and then determine the value of rise time.",
+      "topics": ["signal-flow-graph", "model-order-reduction", "time-domain-specs"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 12,
+      "bloom_level": "analyze",
+      "problem_type": "sfg-pole-placement-dominant-pair-rise-time",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect application of Mason's gain formula to find closed-loop poles",
+        "Forgetting to verify dominance condition (far pole ≥ 5× real part of dominant poles)",
+        "Error in rise time formula for underdamped 2nd order system: tr = (π - θ)/(ωd)"
+      ],
+      "solution_method": "Apply Mason's gain formula to express the closed-loop TF, then equate its denominator to (s+100)(s^2+1.416s+1): set up coefficient equations to solve for A, K2, K3. Drop the far pole at -100 (dominant pair justification), normalize remaining 2nd-order system to standard form, extract ωn and ζ, then compute tr = (π - arccos(ζ))/ωd.",
+      "key_formulas": [
+        "Mason's gain: T = Σ(Pk·Δk)/Δ",
+        "Dominant pole: |Re(far pole)| ≥ 5·|Re(dominant poles)|",
+        "tr = (π - arccos(ζ)) / (ωn·√(1-ζ²))"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-1b",
+      "stem": "An electro-hydraulic system with lever feedback is shown in figure. Valve orifice coefficient K1, piston area A, flow Q = K1·x − K2·P, LVDT sensitivity KL V/m, input device gain Ki V/m, amplifier gain Ka V/V, transducer gain Kt m/V. (i) Draw the block diagram. (ii) Obtain the transfer function Y(s)/E(s), where y is the displacement of mass M.",
+      "topics": ["mathematical-modelling", "block-diagram-reduction", "control-components"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 18,
+      "bloom_level": "apply",
+      "problem_type": "electro-hydraulic-block-diagram-tf",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Missing lever-ratio feedback in block diagram",
+        "Incorrect Laplace-domain force-balance on mass M (forgetting B1, B2 damping terms)",
+        "Confusing piston flow equation signs leading to wrong loop gain sign"
+      ],
+      "solution_method": "Write flow continuity Q = A·sY(s), force balance on mass M: (Ms²+B1s+K1)Y = A·P(s). Express valve opening x from lever geometry using LVDT feedback. Cascade gain blocks (Ki, Ka, KL, Kt) to build the forward-path and feedback-path, then apply Mason or block reduction to get Y(s)/E(s).",
+      "key_formulas": [
+        "Q(s) = K1·X(s) − K2·P(s)",
+        "Q(s) = A·s·Y(s)",
+        "Force balance: (Ms² + Bs)Y(s) = A·P(s)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-2a",
+      "stem": "The open loop TF of a unity negative feedback system is G(s) = K(s+2)/[s(s²+2s+16)]. Draw the Bode magnitude (asymptotic) and phase plots so that steady-state error of the system is 10%. From the plots, determine gain margin & phase margin and comment on system stability.",
+      "topics": ["bode-plot", "steady-state-error", "gain-phase-margin"],
+      "primary_topic": "bode-plot",
+      "marks": 20,
+      "bloom_level": "apply",
+      "problem_type": "bode-plot-gm-pm-from-sse",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect K from SSE: for type-1, ess = 1/Kv = 0.1 → Kv = 10; Kv = lim s·G(s) = K·2/16",
+        "Wrong corner frequencies: ωn = 4 (from s²+2s+16), zero at ω=2",
+        "Reading GM/PM from asymptotic plot instead of actual phase curve"
+      ],
+      "solution_method": "Set ess = 1/Kv = 0.1 → Kv = 10; compute K = 10·(16/2) = 80. Identify corner frequencies: integrator, complex poles at ωn=4 (ζ=0.25), zero at ω=2. Draw asymptotic Bode magnitude; compute phase plot including complex-pole phase contribution. Find phase-crossover frequency (phase=−180°) for GM; find gain-crossover frequency (|G|=0dB) for PM.",
+      "key_formulas": [
+        "ess (ramp, type-1) = 1/Kv",
+        "Kv = lim[s→0] s·G(s)",
+        "GM = −20log|G(jωpc)|, PM = 180° + ∠G(jωgc)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-2b",
+      "stem": "The open loop TF of a unity negative feedback system is G(s) = 15/[s(s+4)]. Design a lead compensator so that the system has a phase margin of 70°. Take safety margin as 5°. (Without using Semi-log graph sheet.)",
+      "topics": ["bode-design", "gain-phase-margin"],
+      "primary_topic": "bode-design",
+      "marks": 10,
+      "bloom_level": "evaluate",
+      "problem_type": "lead-compensator-design-analytical",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to add 5° safety margin → φm_required = 70° + 5° = 75°",
+        "Using uncompensated PM as current PM without computing it first",
+        "Incorrect formula for lead compensator: αmax = (1−sinφmax)/(1+sinφmax)"
+      ],
+      "solution_method": "Compute uncompensated PM analytically: find ωgc where |G(jω)|=1, evaluate phase. Required additional phase = 75° − current PM. Find α = (1−sinφmax)/(1+sinφmax). Set new gain-crossover at ωm = 1/(T√α) where |G(jωm)|·(1/√α) = 1. Solve for T. Write compensator Gc(s) = (1+Ts)/(1+αTs).",
+      "key_formulas": [
+        "φmax = arcsin((1−α)/(1+α))",
+        "ωm = 1/(T√α)",
+        "|Gc(jωm)| = 1/√α (peak gain of lead)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-3a",
+      "stem": "The block diagram of a control system has forward path K/[s(s+1)] and feedback (Kh·s+1). Sketch neat root contours showing all necessary steps for K > 1 (take any two values) and therefrom determine the time at peak overshoot correspondingly.",
+      "topics": ["root-locus", "time-domain-specs"],
+      "primary_topic": "root-locus",
+      "marks": 15,
+      "bloom_level": "analyze",
+      "problem_type": "root-contour-peak-overshoot-time",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Confusing root locus (varying K) with root contour (varying Kh for fixed K)",
+        "Forgetting to convert fixed-K closed-loop CE into standard KH·(…) = 0 form",
+        "Incorrect tp formula: tp = π/ωd; must read ωd from contour"
+      ],
+      "solution_method": "For each fixed K > 1, write the closed-loop CE = s²+(1+K·Kh)s+K = 0; rearrange as 1 + Kh·[Ks/(s²+s+K)] = 0 to treat Kh as the root-locus parameter. Sketch contours. From complex pole positions read ζ, ωd. Compute tp = π/ωd for each K value.",
+      "key_formulas": [
+        "CE: s² + (1 + K·Kh)s + K = 0",
+        "Root contour parameter form: 1 + Kh·G_eq(s) = 0",
+        "tp = π / ωd = π / (ωn√(1−ζ²))"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-3b",
+      "stem": "A temperature control system has amplifier gain Ka, thermal resistance R (°C/W), thermal capacitance C (J/°C), sensor constant Kt (V/°C), Joule's coefficient J, reference voltage Er. (i) Draw the labeled signal flow graph. (ii) Obtain the incremental transfer function ΔT(s)/ΔEr(s). (iii) Derive sensitivity of the system to Ka changes in open loop and closed loop; reduce for DC conditions.",
+      "topics": ["signal-flow-graph", "mathematical-modelling", "feedback-properties"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 15,
+      "bloom_level": "analyze",
+      "problem_type": "thermal-system-sfg-tf-sensitivity",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Linearization error: incremental model must perturb Q = J·i² → ΔQ = 2J·I0·Δi",
+        "Omitting thermal TF block 1/(RCs+1) in SFG",
+        "Sensitivity formula: S^T_Ka = (∂T/∂Ka)·(Ka/T) — forgetting to normalize"
+      ],
+      "solution_method": "Linearize heater power about operating point; draw SFG with nodes: ΔEr → Ka → J-factor → thermal block 1/(RCs+1) → ΔT, with Kt feedback. Apply Mason's formula for ΔT/ΔEr. For sensitivity, use S = (∂F/∂Ka)·(Ka/F); open-loop S=1, closed-loop S = 1/(1+loop gain); at DC set s=0.",
+      "key_formulas": [
+        "Thermal TF: G_th(s) = R/(RCs+1)",
+        "Closed-loop TF: T/Er = Ka·G_th / (1 + Ka·Kt·G_th)",
+        "Sensitivity: S^CL_Ka = 1/(1 + Ka·Kt·R) at DC"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-4a",
+      "stem": "Characteristic equation of a system is s³ + 5s² + 4s + Ks + 20 = 0. Draw a neat sketch of the root locus of the system for 0 < K < ∞, showing all necessary steps.",
+      "topics": ["root-locus", "stability-RH"],
+      "primary_topic": "root-locus",
+      "marks": 10,
+      "bloom_level": "apply",
+      "problem_type": "root-locus-from-ce-sketch",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Rewriting CE: poles from s³+5s²+4s+20=0 (K=0), zero from s²+1=0 not s+4",
+        "Missing asymptote angles: (2k+1)·180°/n-m",
+        "Not checking departure angles from complex poles"
+      ],
+      "solution_method": "Rewrite CE as 1 + K·s/(s³+5s²+4s+20) = 0. Factor denominator at K=0: s³+5s²+4s+20 = (s²+4)(s+5), giving open-loop poles at ±j2 and −5; open-loop zero at s=0. Apply standard RL rules: n=3, m=1, 2 asymptotes at ±90°, centroid=(−5+0−0)/2=−2.5. Find imaginary-axis crossings via RH.",
+      "key_formulas": [
+        "Asymptote angles: (2k+1)·180°/(n−m)",
+        "Centroid: σ = (Σpoles − Σzeros)/(n−m)",
+        "Breakaway: dK/ds = 0"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2011-compre-4b",
+      "stem": "Sketch the Nyquist plot for the system with open loop TF G(s) = 2.5K / [s(1+0.4s)(0.2s+1)], choosing the appropriate Nyquist contour. Determine the range of K (K>0) for which the closed loop system is stable. Also determine the Gain Margin for K=3.",
+      "topics": ["nyquist-criterion", "gain-phase-margin"],
+      "primary_topic": "nyquist-criterion",
+      "marks": 20,
+      "bloom_level": "analyze",
+      "problem_type": "nyquist-stability-K-range-GM",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Not handling the pole at origin: indent Nyquist contour to the right, adding semicircle at s=0",
+        "Incorrect real-axis crossing: set Im[G(jω)]=0 to find ωpc, then compute Re[G(jωpc)]",
+        "Sign error: Z = N + P; P=0 for this plant so N must be 0 for stability"
+      ],
+      "solution_method": "G(s) = 2.5K/[s(1+0.4s)(1+0.2s)]. Indent around origin. For Nyquist plot: compute G(jω) = 2.5K/[jω(1+j0.4ω)(1+j0.2ω)]; find ωpc where phase = −180° → set Im/Re = tan(180°); solve: 1 − 0.08ω² = 0 → ωpc = 1/√0.08 ≈ 3.54 rad/s. Evaluate |G(jωpc)| = 2.5K/(3.54·…); for stability |G(jωpc)| < 1 → K < Kcritical. For K=3, GM = 1/|G(jωpc)|.",
+      "key_formulas": [
+        "Phase crossover: ∠G(jωpc) = −180°",
+        "GM = 1/|G(jωpc)| (linear), or 20log(1/|G(jωpc)|) dB",
+        "Stability: N=0 → no encirclements of −1+j0"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "First Semester 2010-11 comprehensive, course code AAOC C321. Total marks 120. Q1 and Q2 from page 1, Q3 and Q4 from page 2. Q3(a) references a block diagram figure with feedback transfer function (Kh·s+1); Kh value not explicitly stated — root contour parameter. All questions closed-book."
+}

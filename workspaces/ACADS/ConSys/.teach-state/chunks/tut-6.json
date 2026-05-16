@@ -1,0 +1,160 @@
+{
+  "source_file": "Tut 6.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 6",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1i",
+      "stem": "Consider a DC servomotor driving a load (Fig. Q1). Torque-speed curve: Tm = -8ωm + 200 for ea = 100 V. Given gear ratios N1=20, N2=100, N3=25, N4=100, Jm=1 kg-m², Dm=5 N-m-s/rad, JL=400 kg-m², DL=800 N-m-s/rad. Find the time taken by the load to reach 75% of its steady-state angular speed when ea instantaneously changes from 0 V to 100 V.",
+      "topics": ["control-components", "time-domain-response", "time-domain-specs"],
+      "primary_topic": "control-components",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "dc-servomotor-time-to-75pct-speed",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect gear-reflected inertia/damping calculation (need to reflect JL and DL to motor shaft through total gear ratio)",
+        "Using motor stall torque and no-load speed incorrectly to extract KT, Kb, Ra",
+        "Forgetting that 75% of steady state corresponds to t = -τ·ln(0.25)"
+      ],
+      "solution_method": "From torque-speed curve extract slope (−KT·Kb/Ra + Dm reflected) and intercept (KT·Ea/Ra) to identify equivalent damping and drive torque. Reflect load inertia and damping to motor shaft via (N1·N3)/(N2·N4) gear ratio squared. Form first-order ODE: Jeq·(dωm/dt) + Deq·ωm = KT·ea/Ra; time constant τ = Jeq/Deq. Time to 75% SS = −τ·ln(0.25).",
+      "key_formulas": [
+        "Total gear ratio n = (N1·N3)/(N2·N4)",
+        "Jeq = Jm + n²·JL",
+        "Deq = Dm + n²·DL (compare with torque-speed slope to get effective Deq)",
+        "τ = Jeq / Deq",
+        "t₇₅% = τ · ln(4)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1ii",
+      "stem": "Using the same DC servomotor system (Fig. Q1), determine the effect on the time constant of the transfer function ωL(s)/Ea(s) if N4 changes from 100 to 125.",
+      "topics": ["control-components", "mathematical-modelling"],
+      "primary_topic": "control-components",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "gear-ratio-effect-on-time-constant",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not recomputing the reflected inertia and damping with the new gear ratio",
+        "Confusing motor-shaft time constant with load-referred time constant"
+      ],
+      "solution_method": "Recompute total gear ratio n' = (N1·N3)/(N2·N4') with N4=125. Reflect JL and DL to motor shaft with n'². New Jeq' and Deq' give new τ' = Jeq'/Deq'; compare with original τ to state whether time constant increases or decreases.",
+      "key_formulas": [
+        "n' = (N1·N3)/(N2·N4')",
+        "Jeq' = Jm + n'²·JL",
+        "τ' = Jeq' / Deq'"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "Given G(s) = C(s)/R(s) = (s+2)/(s+5), find the output expression c(t) for (a) unit impulse input and (b) unit step input.",
+      "topics": ["time-domain-response"],
+      "primary_topic": "time-domain-response",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "first-order-tf-impulse-step-response",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Forgetting to account for the improper-looking numerator — this TF is proper (degree equal), leading to a direct term plus exponential",
+        "Missing the δ(t) term in impulse response due to relative degree zero"
+      ],
+      "solution_method": "For impulse: C(s) = G(s)·1 = (s+2)/(s+5); perform partial fractions or polynomial division → C(s) = 1 - 3/(s+5), giving c(t) = δ(t) - 3e^(-5t)·u(t). For step: C(s) = G(s)/s = (s+2)/(s(s+5)); partial fractions → C(s) = 2/(5s) + 3/(5(s+5)), giving c(t) = (2/5)u(t) + (3/5)e^(-5t)·u(t).",
+      "key_formulas": [
+        "Impulse response: c(t) = δ(t) - 3e^{-5t} u(t)",
+        "Step response: c(t) = (2/5)(1 + (3/2)e^{-5t}) u(t)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3",
+      "stem": "A temperature probe (time constant τ) is moved through environments: t<0 s at 25°C (dry, τ=30 s); 0<t<7 s at 35°C (dry, τ=30 s); 7<t<15 s at 70°C (water, τ=5 s); 15<t<30 s at 35°C (wet, τ=20 s). Calculate the indicated temperature at the end of each interval and sketch the variation.",
+      "topics": ["time-domain-response", "mathematical-modelling"],
+      "primary_topic": "time-domain-response",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "first-order-temperature-response-multi-interval",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Using wrong τ for each phase (dry vs wet vs water)",
+        "Not carrying forward the correct initial condition (end-of-previous-interval temperature) into the next phase",
+        "Computing e^(-t/τ) with t = duration of interval, not resetting t=0 at each transition"
+      ],
+      "solution_method": "In each interval apply T(t) = T_env + (T_initial - T_env)·e^(-t/τ) where t is time elapsed since start of that interval, T_initial is the probe temp at start of interval, and τ is appropriate for that medium. Chain across intervals: end temp of one → initial temp of next.",
+      "key_formulas": [
+        "T(t) = T_∞ + (T₀ - T_∞)·e^{-t/τ}",
+        "T(7) = 35 + (25-35)·e^{-7/30}",
+        "T(15) = 70 + (T(7)-70)·e^{-8/5}",
+        "T(30) = 35 + (T(15)-35)·e^{-15/20}"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4a",
+      "stem": "A tank has cross-sectional area A and nonlinear outflow Q0 = β√h. Linearize around operating point H̄ and find the transfer function ΔH(s)/ΔQi(s).",
+      "topics": ["mathematical-modelling", "time-domain-response"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "nonlinear-tank-linearization-tf",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not linearizing Q0 = β√h (must compute dQ0/dh|H̄ = β/(2√H̄))",
+        "Forgetting to write the mass balance in deviation variables before taking Laplace"
+      ],
+      "solution_method": "Mass balance: A·dh/dt = Qi - Q0. Linearize Q0 around H̄: ΔQ0 = (β/2√H̄)·ΔH = ΔH/R where R = 2√H̄/β. Deviation variable equation: A·d(ΔH)/dt = ΔQi - ΔH/R. Laplace transform → ΔH(s)/ΔQi(s) = R/(As+1) = R/(τs+1) with τ = AR.",
+      "key_formulas": [
+        "R = 2√H̄/β (linearized resistance)",
+        "τ = AR = 2A√H̄/β",
+        "ΔH(s)/ΔQi(s) = R/(τs+1)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4b",
+      "stem": "For the linearized tank system, state the static gain and time constant around operating point H̄.",
+      "topics": ["mathematical-modelling", "time-domain-specs"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "understand",
+      "problem_type": "identify-gain-time-constant-first-order",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Confusing static gain (R) with time constant (AR)"
+      ],
+      "solution_method": "From TF = R/(τs+1): static gain = R = 2√H̄/β, time constant = τ = 2A√H̄/β.",
+      "key_formulas": [
+        "Static gain K = 2√H̄/β",
+        "Time constant τ = 2A√H̄/β"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4c",
+      "stem": "Using the linearized tank model, calculate the approximate time for the liquid level to reach a new steady state when the operating point H̄ is (i) L/2 and (ii) L/3.",
+      "topics": ["mathematical-modelling", "time-domain-specs"],
+      "primary_topic": "time-domain-response",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "settling-time-from-operating-point",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using 5τ instead of recognising approximately 5τ ≈ settling time for first-order",
+        "Not substituting H̄ = L/2 or L/3 correctly into τ = 2A√H̄/β"
+      ],
+      "solution_method": "Substitute H̄ into τ = 2A√H̄/β. Settling time ≈ 5τ for first-order system (98% of final value). Evaluate for H̄=L/2: τ₁ = 2A√(L/2)/β; for H̄=L/3: τ₂ = 2A√(L/3)/β.",
+      "key_formulas": [
+        "τ(H̄) = 2A√H̄/β",
+        "t_settle ≈ 5τ",
+        "τ(L/2) = A√(2L)/β",
+        "τ(L/3) = 2A√(L/3)/β"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 17 February 2026. Q1 involves a multi-stage gear train; gear ratios and reflected quantities require careful calculation. Q3 tests chained first-order responses with different time constants per medium phase. Q4 is a nonlinear tank requiring linearization before TF extraction."
+}

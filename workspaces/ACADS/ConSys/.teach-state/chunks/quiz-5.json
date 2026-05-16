@@ -1,0 +1,70 @@
+{
+  "source_file": "Quiz 5_CONSYS (Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 5",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1A",
+      "stem": "The asymptotic Bode magnitude plot for a minimum phase system G(s) = K(s+a)/[s(s+b)] is shown in Fig. Q1 (initial slope -20 dB/dec, magnitude 40 dB at ω=0.1, pole at ω=2, zero at ω=10, final slope -20 dB/dec). Draw the pole-zero plot of this system.",
+      "topics": ["bode-plot", "TF-from-bode"],
+      "primary_topic": "TF-from-bode",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "pole-zero-plot-from-bode",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Misidentifying the pole and zero frequencies from slope changes",
+        "Forgetting the origin pole (integrator) from the initial -20 dB/dec slope"
+      ],
+      "solution_method": "Read break frequencies from slope changes: slope starts at -20 dB/dec (pole at origin), changes to -40 dB/dec at ω=2 (pole at s=-2), then recovers to -20 dB/dec at ω=10 (zero at s=-10). Plot pole at origin, pole at -2, zero at -10 on s-plane.",
+      "key_formulas": ["G(s) = K(s+10)/[s(s+2)]", "Slope change of -20 dB/dec → pole; +20 dB/dec → zero"],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1B",
+      "stem": "For the system G(s) = K(s+a)/[s(s+b)] with Bode plot as in Fig. Q1, find the value of K.",
+      "topics": ["bode-plot", "TF-from-bode"],
+      "primary_topic": "TF-from-bode",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "find-gain-K-from-bode",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Using wrong reference frequency for the 0 dB intercept calculation",
+        "Confusing K (overall gain) with K' (Bode form gain)"
+      ],
+      "solution_method": "Express G(s) in Bode standard form G(s) = K'(1+s/10)/[s(1+s/2)]. Use the given magnitude at ω=0.1: 20log(K') - 20log(0.1) = 40 dB → K'=10. Convert to G(s)=10(1+s/10)/[s(1+s/2)] = 10(s+10)/[s·10·(s+2)/2] = (s+10)/[s(s+2)]·... → K=2.",
+      "key_formulas": [
+        "20log|G(jω)| at ω=0.1 = 40 dB",
+        "K' = 10, G(s) = 10(1+s/10)/[s(1+s/2)] = 2(s+10)/[s(s+2)]",
+        "K = 2"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1C",
+      "stem": "If the gain crossover frequency of G(s) = K(s+10)/[s(s+2)] (unity feedback) is 4.5 rad/s, find the phase margin in degrees.",
+      "topics": ["gain-phase-margin", "bode-plot"],
+      "primary_topic": "gain-phase-margin",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "phase-margin-from-gc-frequency",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Sign error in phase angle: forgetting -90° from the integrator pole",
+        "Using wrong formula: PM = 180° + ∠GH, forgetting the +180°",
+        "Evaluating tan⁻¹ in wrong order (zero vs pole contribution)"
+      ],
+      "solution_method": "Compute ∠G(jω_gc) = -90° + tan⁻¹(ω_gc/10) - tan⁻¹(ω_gc/2) at ω_gc=4.5. This gives -90° + tan⁻¹(0.45) - tan⁻¹(2.25) = -90° + 24.23° - 66.04° ≈ -131.8°. PM = 180° + (-131.8°) = 48.2°.",
+      "key_formulas": [
+        "PM = 180° + ∠G(jω_gc)H(jω_gc)",
+        "∠G(jω) = -90° + tan⁻¹(ω/10) - tan⁻¹(ω/2)",
+        "PM = 48.2°"
+      ],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Single question with 3 sub-parts (A/B/C), 6 marks total, 12-minute quiz. Marker note: alternative approach for part B finding K=2.02 (using |G(jω_gc)|=1 condition) should also receive full marks."
+}

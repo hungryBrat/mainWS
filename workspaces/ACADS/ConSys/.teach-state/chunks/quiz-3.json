@@ -1,0 +1,76 @@
+{
+  "source_file": "Quiz 3_CONSYS (Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 3",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1",
+      "stem": "Consider a transfer function G(s) = 2/(s+5). Find the time taken by this system to reach 98% of its steady state value, if a unit step input is applied.",
+      "topics": ["time-domain-response", "time-domain-specs"],
+      "primary_topic": "time-domain-response",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "first-order-step-response-settling",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Forgetting to account for DC gain (final value ≠ 1 when G(s) has gain ≠ 1)",
+        "Using 2% criterion directly on τ without adjusting for actual final value",
+        "Computing τ from denominator without extracting standard form first"
+      ],
+      "solution_method": "Rewrite G(s) in standard form: final value = 2/5 = 0.4, τ = 1/5 = 0.2 s. For 98% of final value, solve 0.98×0.4 = 0.4(1 − e^(−t/0.2)), giving t = −0.2 ln(0.02) ≈ 0.7824 s ≈ 0.8 s.",
+      "key_formulas": [
+        "c(t) = K(1 − e^(−t/τ)) for first-order step response",
+        "τ = 1/a for G(s) = K/(s+a)",
+        "t = −τ ln(1 − fraction)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-2",
+      "stem": "A spring-mass-damper system has transfer function X(s)/F(s) = 1/(s² + 10s + 100). An input force F(t) = 20 u(t) N is applied. Find (i) the damping ratio ζ, and (ii) the peak value of displacement X(t).",
+      "topics": ["time-domain-response", "time-domain-specs"],
+      "primary_topic": "time-domain-specs",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "second-order-peak-response-specs",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Not scaling by the DC gain (final value = A/ωn² not 1) when computing peak",
+        "Forgetting to multiply Mp% by the actual final value to get absolute peak",
+        "Confusing ωn and ωd in Mp formula"
+      ],
+      "solution_method": "Identify ωn = 10, 2ζωn = 10 → ζ = 0.5. Final value c(∞) = 20/100 = 0.2. Mp% = exp(−πζ/√(1−ζ²)) × 100 ≈ 16.3%. Peak displacement = c(∞) × (1 + Mp/100) = 0.2 × 1.163 = 0.2326 m.",
+      "key_formulas": [
+        "ωn² = 100, 2ζωn = 10 → ωn = 10, ζ = 0.5",
+        "Mp = exp(−πζ/√(1−ζ²))",
+        "x_peak = c(∞) × (1 + Mp)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-3",
+      "stem": "Pole pair (s1, s2) of a second order system are shown in Fig. Q3. By replacing the pole locations, one can reduce the system's peak time (tp) without altering its settling time. Which new pole locations would you recommend: (s1A, s2A) encircled by 'Δ', or (s1B, s2B) encircled by '□'? Briefly justify your answer.",
+      "topics": ["time-domain-specs", "root-locus"],
+      "primary_topic": "time-domain-specs",
+      "marks": 2,
+      "bloom_level": "analyze",
+      "problem_type": "pole-location-spec-tradeoff-analysis",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing which parameter controls tp vs ts",
+        "Selecting s1B, s2B (same ωd, different σ) incorrectly",
+        "Not justifying in terms of ωd and ζωn independently"
+      ],
+      "solution_method": "tp = π/ωd, so reducing tp requires increasing ωd (imaginary part). ts = 4/(ζωn) = 4/σ, so fixing ts requires σ (real part) unchanged. Poles s1A, s2A lie further from real axis (larger ωd) with same σ — both conditions satisfied. Full marks only if reason is stated correctly.",
+      "key_formulas": [
+        "tp = π/ωd",
+        "ts ≈ 4/(ζωn) = 4/σ",
+        "ωd = ωn√(1−ζ²)"
+      ],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Quiz 3, date 24.02.2026, MM: 06, Time: 12 minutes. All marks awarded only if justification/steps are correct (grader annotation: '2m only if reason is also correct' on Q3). All stems reconstructed from solution."
+}

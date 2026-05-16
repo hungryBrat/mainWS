@@ -1,0 +1,16 @@
+{
+  "course_slug": "pop-lit-south-asia-2026",
+  "sessions_logged": 0,
+  "mastery": {
+    "south-asia-introduction": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "afghanistan": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "pakistan": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "bangladesh-nepal": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "bhutan": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "srilanka": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "india": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}},
+    "comparative-analysis": {"score": null, "n_attempts": 0, "last_practiced": null, "errors_by_type": {}}
+  },
+  "confidence_calibration_delta": null,
+  "attempt_log": []
+}

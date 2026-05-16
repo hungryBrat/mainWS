@@ -1,0 +1,208 @@
+{
+  "source_file": "MId_Sem_Solution_with_marking_scheme.pdf",
+  "content_type": "mid_sem_solution",
+  "year_label": "2025-26",
+  "year_canonical": 2026,
+  "evaluation_component": "mid-sem",
+  "questions": [
+    {
+      "id": "Q-2026-mid-sem-1a",
+      "stem": "For a gear-train driven DC motor system with gear ratio 1/2 and given motor inertia J4=32 kg-m² and other parameters, compute the equivalent inertia (Jeq) and equivalent damping (Deq) referred to the motor shaft.",
+      "topics": ["mathematical-modelling", "control-components"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 4,
+      "bloom_level": "apply",
+      "problem_type": "gear-train-equivalent-inertia-damping",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Forgetting to square the gear ratio when reflecting inertia/damping (N²·J rule)",
+        "Missing the +1 additive term for motor rotor inertia",
+        "Using incorrect gear ratio (n=1/2 vs n=2)"
+      ],
+      "solution_method": "Apply reflected inertia formula Jeq = (N1/N2)²·J_load + J_motor for each stage; apply same squaring rule to damping Deq = (N1/N2)²·B_load. Substitute numerical values: Jeq = (1/16)×32 + (1/4)×4 + 1 = 4 kg-m²; Deq = (1/3)(1/2)²×16 = 4/3 N-m-s/rad.",
+      "key_formulas": [
+        "Jeq = Σ(Ni/N_ref)²·Ji",
+        "Deq = Σ(Ni/N_ref)²·Bi"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-1b",
+      "stem": "Draw the block diagram of the DC motor system (with gear train, gear ratio 1/2) relating armature voltage Ea(s) to motor shaft angle θm(s). Given the torque-speed characteristics showing rated torque 5 N-m at 0 RPM and zero torque at 600/π RPM (≈20 rad/s), determine Kt/Ra and Kt·Kb/Ra. Hence derive the transfer function θm(s)/Ea(s).",
+      "topics": ["mathematical-modelling", "control-components", "block-diagram-reduction"],
+      "primary_topic": "control-components",
+      "marks": 8,
+      "bloom_level": "apply",
+      "problem_type": "dc-motor-tf-from-torque-speed-curve",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect identification of Kt/Ra from stall torque (intercept at ω=0, not slope)",
+        "Sign error in back-EMF term Eb = Kb·ωm in the armature circuit",
+        "Not applying gear ratio correctly when relating θm to θL in the block diagram",
+        "Missing factor of 1/s to convert ωm(s) to θm(s)"
+      ],
+      "solution_method": "From torque-speed characteristic: Kt/Ra = T_stall/Ea_rated = 5/5 = 1; slope gives Kt·Kb/Ra = (5-0)/(20-0) = 1/4. Draw block diagram with forward path 1/Ra → Kt → 1/(Jeq·s + Beq) → 1/s and back-EMF feedback Kb. Derive closed-loop TF: θm(s)/Ea(s) = (1/8)·[0.8/(3.2s+1)] after substituting Jeq=4, Beq=(Beq+KtKb/Ra)=1+1/4=5/4.",
+      "key_formulas": [
+        "Tm = Kt·ia = Kt(Ea - Kb·ωm)/Ra",
+        "θm(s)/Ea(s) = [Kt/Ra] / [s(Jeq·s + Beq) + Kt·Kb/Ra]",
+        "Kt/Ra = T_stall / V_rated",
+        "Kt·Kb/Ra = T_stall / ω_no_load"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-1c",
+      "stem": "Given the gear ratio between load shaft and motor shaft is 1/4 (θL/θm = 1/4), find the transfer function θL(s)/Ea(s).",
+      "topics": ["mathematical-modelling", "control-components"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 3,
+      "bloom_level": "apply",
+      "problem_type": "gear-ratio-output-tf",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Applying gear ratio incorrectly (multiplying by 4 instead of 1/4)",
+        "Using wrong TF from part (b) as base"
+      ],
+      "solution_method": "Multiply θm(s)/Ea(s) by gear ratio θL/θm = 1/4 to get θL(s)/Ea(s) = (0.25/8)·[0.8/(3.2s+1)] = (0.025)·[1/(0.3194s+1)].",
+      "key_formulas": [
+        "θL(s)/Ea(s) = (N_motor/N_load) · θm(s)/Ea(s)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-2",
+      "stem": "A rotational system drives a translational system through a rack-and-pinion (radius r=2 m, gear ratio 2:1 motor-to-load). Motor inertia Jm=1 kg-m², load inertia JL=1 kg-m², load damping BL=1 N-m-s/rad, spring constant K N/m, translational mass m kg, translational damping B=8 N-s/m. (a) Derive the transfer function X(s)/Tm(s). (b) For settling time ts=15 s, determine the mass m. (Use 2% criterion.)",
+      "topics": ["mathematical-modelling", "time-domain-specs"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 13,
+      "bloom_level": "analyze",
+      "problem_type": "rotational-translational-coupled-system-tf",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Not reflecting translational-side forces (F=ms²+Bs) as equivalent torque via F·r",
+        "Incorrect gear ratio application when combining Jeq on load side vs motor side",
+        "Error in computing Jeq at load side: forgetting (N2/N1)²·Jm contribution",
+        "Wrong settling-time formula: ts=4/(ζ·ωn) for 2% criterion, not ts=4/ωn",
+        "Algebraic error in solving for m from ts constraint"
+      ],
+      "solution_method": "Refer all inertia to load shaft: Jeq=1+(2)²×1=5 kg-m², Beq=0+(2)²×1=4 N-m-s/rad. Write torque balance at load gear: Teq·θL̈+Beq·θL̇+K·θL = Tm_reflected + F(s)·r where F(s)=(ms²+Bs)·X(s) and X(s)=r·θL(s). Substitute r=2 and gear ratio (Tm_reflected=2Tm). Derive X(s)/Tm(s) = 4/[(5+4m)s²+8s+K]. For ts=15: 4/[4B/(5+4m)]=15 → m=10/4=2.5 kg.",
+      "key_formulas": [
+        "Jeq_load = JL + (N1/N2)²·Jm",
+        "Beq_load = BL + (N1/N2)²·Bm",
+        "ts = 4/(ζ·ωn)  [2% criterion]",
+        "ζ·ωn = B/(2(5+4m))  from standard 2nd-order form"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-3a",
+      "stem": "A unity-feedback control system has open-loop transfer function G(s) = K/[(s+100)(s+20)²]. Determine the range of K for closed-loop stability using the Routh-Hurwitz criterion.",
+      "topics": ["stability-RH"],
+      "primary_topic": "stability-RH",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "rh-stability-range-of-K",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Arithmetic error in expanding (s+100)(s+20)²",
+        "Incorrect Routh array construction (wrong pivot element computation)",
+        "Forgetting both conditions: s⁰ row > 0 AND s¹ row element > 0",
+        "Not stating both bounds: missing the lower bound K > -4000"
+      ],
+      "solution_method": "Form closed-loop CE: 1+G(s)=0 → s³+140s²+4400s+(40000+10K)=0. Construct 4-row Routh array. s³: [1, 4400]; s²: [140, 40000+10K]; s¹: [α=(140×4400−(40000+10K))/140]; s⁰: [40000+10K]. Stability requires α>0 and 40000+10K>0 → K<57,600 and K>−4000.",
+      "key_formulas": [
+        "CE: s³ + 140s² + 4400s + (40000+10K) = 0",
+        "Stability: all Routh column-1 elements positive",
+        "α = (140×4400 − (40000+10K)) / 140 > 0  →  K < 57,600",
+        "40000 + 10K > 0  →  K > −4000"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-3b",
+      "stem": "For G(s) = K/[(s+100)(s+20)²] in unity feedback, find the value of K such that the closed-loop system has a damping ratio ζ=0.69 (i.e., approximately 5% overshoot). Identify the closed-loop poles and verify the dominance of complex poles.",
+      "topics": ["stability-RH", "time-domain-specs", "time-domain-response"],
+      "primary_topic": "time-domain-specs",
+      "marks": 9,
+      "bloom_level": "analyze",
+      "problem_type": "design-K-for-damping-ratio-pole-verification",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Using Mp=e^(-πζ/√(1-ζ²)) and reading ζ=0.69 for ~5% (correct) but miscalculating",
+        "Sign error when solving for 'a' (real pole location) from coefficient comparison",
+        "Selecting the unstable root ωn=187 instead of valid ωn=25.92",
+        "Not checking that the real pole s₁≈6×(ζωn) to confirm it is non-dominant"
+      ],
+      "solution_method": "Assume CE factors as (s+a)(s²+2ζωn·s+ωn²)=0 with ζ=0.69. Expand and match coefficients against s³+140s²+4400s+(40000+10K): get three equations. From (1.38ωn+a)=140 and (ωn²+1.38a·ωn)=4400, solve to get ωn=25.92 (ωn=187 rejected as it makes a<0). Then a=104.23, K≈3002. Complex poles s₂,₃=−17.385±j18.76; real pole s₁=−104.23≈6(ζωn), confirming 5% overshoot approximation valid.",
+      "key_formulas": [
+        "CE = (s+a)(s²+2ζωn·s+ωn²) = 0",
+        "ζ = 0.69  →  2ζωn = 1.38ωn",
+        "Coefficient match: (1.38ωn+a)=140; (ωn²+1.38a·ωn)=4400; a·ωn²=(40000+10K)",
+        "Mp ≈ 5%  ↔  ζ ≈ 0.69",
+        "Dominance check: |Re(s₁)| >> |Re(s₂,₃)|"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-4a",
+      "stem": "A relay-controlled first-order system has G(s)=2/(10s+1). The relay output u(t) switches between 0.8 and 0 based on error thresholds: relay turns ON (u=0.8) when e(t)>0.2, turns OFF (u=0) when e(t)<−0.2 or c(t)>0.8. With unit step reference (r=1), find the switching times t₀ (first switch OFF) and t₁ (first switch back ON) and t₂ (second switch OFF).",
+      "topics": ["time-domain-response", "time-domain-specs"],
+      "primary_topic": "time-domain-response",
+      "marks": 9,
+      "bloom_level": "analyze",
+      "problem_type": "relay-control-switching-time-first-order",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect initial/final values in first-order step response formula c(t)=c_final+(c_initial−c_final)e^(−t/τ)",
+        "Not tracking the correct switching condition (c>1.2 vs c>0.8)",
+        "Using wrong cfinal when relay switches to 0 (cfinal=0, not 0.8)",
+        "Arithmetic error in computing t₁' and adding to t₀ to get t₁"
+      ],
+      "solution_method": "System gain=2, τ=10 s. Phase 1 (u=0.8): c_final=1.6, c_initial=0; switch OFF when c(t₀)=1.2: 1.2=1.6(1−e^(−t₀/10)) → t₀=13.863 s. Phase 2 (u=0): c_final=0, c_initial=1.2; switch ON when c drops to 0.8: 0.8=1.2·e^(−t₁'/10) → t₁'=4.054 s, so t₁=17.917 s. Phase 3 (u=0.8): c_final=1.6, c_initial=0.8; switch OFF when c(t₂)=1.2: 1.2=1.6+(0.8−1.6)e^(−t₂'/10) → t₂'=6.931 s, t₂=28.85 s.",
+      "key_formulas": [
+        "c(t) = c_final + (c_initial − c_final)·e^(−t/τ)",
+        "c_final = K·u  where K=2, τ=10",
+        "Switch ON: c(t) < 0.8 (i.e. e > 0.2)",
+        "Switch OFF: c(t) > 1.2 (i.e. e < −0.2)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-4b",
+      "stem": "For the relay-controlled system in Q4(a), determine the period of oscillation of the relay switching cycle.",
+      "topics": ["time-domain-response"],
+      "primary_topic": "time-domain-response",
+      "marks": 3,
+      "bloom_level": "apply",
+      "problem_type": "relay-oscillation-period",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using total time span instead of one ON+OFF half-cycle sum",
+        "Not summing t₁' and t₂' correctly (4.054+6.931)"
+      ],
+      "solution_method": "Period = duration of one complete ON-OFF cycle = t₁' + t₂' = 4.054 + 6.931 = 10.985 s.",
+      "key_formulas": [
+        "T = t_OFF_duration + t_ON_duration"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-mid-sem-4c",
+      "stem": "Sketch the relay control signal u(t) and output c(t) vs time for the relay-controlled system in Q4, marking the switching instants t=0, 13.863, 17.917, 28.85 s.",
+      "topics": ["time-domain-response"],
+      "primary_topic": "time-domain-response",
+      "marks": 3,
+      "bloom_level": "understand",
+      "problem_type": "sketch-relay-output-waveform",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Incorrect timing of switching instants on the sketch",
+        "Not showing u(t) switching between 0 and 0.8 (confusing with ±1 relay)"
+      ],
+      "solution_method": "Draw u(t) as rectangular wave: HIGH (0.8) from 0→13.863, LOW (0) from 13.863→17.917, HIGH again 17.917→28.85. Show c(t) rising toward 1.6, hitting 1.2 at 13.863, falling to 0.8 at 17.917, rising again to 1.2 at 28.85.",
+      "key_formulas": [],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Handwritten solution with circled marks per sub-part. Q1 is DC motor/gear-train modelling (3 sub-parts, 15 marks total). Q2 is rotational-translational coupled system (13 marks). Q3 is RH stability + pole placement for ζ (two sub-parts, 15 marks). Q4 is relay-control first-order system (three sub-parts, 15 marks). No question paper present — all stems reconstructed from solution layout. Marking scheme annotations (circled numbers) used to assign marks per sub-part."
+}

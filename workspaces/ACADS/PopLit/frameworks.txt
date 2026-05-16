@@ -1,0 +1,114 @@
+Goal: Internalize 6 frameworks deeply enough to deploy in any prompt within 90 seconds.
+
+Why first: Every question in a literature comprehensive forces you to pick a lens. If your lens is slow to retrieve, every answer suffers. By the end of this hour, these 6 frameworks should feel automatic.
+
+Framework 1: Culture as Process
+The core idea: Culture is not an artifact (a thing) but a process (an activity). Every "cultural identity" is being made, contested, performed, reshaped — never finished.
+
+The intuition: When you say "Pakistani culture" or "Bhutanese culture," whose version do you mean? The 1947 version? The diaspora's version? The Taliban's version? Tsomo's? They all conflict. Culture is the site of conflict, not the resolution of it.
+
+The opposite (which the texts reject): Culture as a list of customs, foods, festivals — a fixed essence you either belong to or don't.
+
+Deploy when: Any prompt asks about "South Asian culture," "tradition," "heritage," "belonging." Refuse the static frame.
+
+Texts that demonstrate it:
+
+Circle of Karma — Bhutanese Buddhism is shown being LIVED and SUFFERED, not described as doctrine
+Funny Boy — Sri Lankan identity is being made through who counts as Sri Lankan (Tamil exclusion)
+Khamosh Pani — Pakistani identity is being remade in 1979 through Islamization
+White Tiger — "Indian culture" of servitude (rooster coop) is being actively reproduced and contested
+Strong move in essay: "The text demonstrates culture as process by depicting [character] not as the bearer of a stable culture but as actively negotiating, performing, or contesting cultural meaning under specific historical pressure."
+
+Framework 2: Margin–Centre
+The core idea: Power operates by establishing centers (whose voices are normal/legitimate/heard) and margins (whose voices are exotic/illegitimate/silent). Margin–centre is relational, not geographical — it shifts depending on context.
+
+5 levels at which margin-centre operates:
+
+Level	Centre	Margin	Example texts
+Geopolitical	The West	South Asia	Kite Runner, Slumdog
+National	Dominant ethnicity/religion	Minorities	Funny Boy (Tamil), Lajja (Hindu in Bangladesh)
+Within community	Men	Women	Osama, Khamosh Pani, Circle of Karma
+Class	Upper class	Workers/servants	White Tiger, garment industry films
+Narrative	Whose "I" tells the story	Whose story is told about	Kite Runner (Amir tells, Hassan is told about)
+Crucial nuance: Manto's signature move is inversion — he places the formal margin (sex workers, the insane, criminals) at the narrative centre, exposing how "respectable" society's power depends on excluding them.
+
+Deploy when: Almost any prompt. Always ask three questions: (1) Who is centered? (2) Who is marginal? (3) What does the centering do?
+
+Strong move in essay: "The text operates a margin–centre logic in which [X] occupies the centre by virtue of [structural feature]; [Y] is rendered marginal not by accident but by the same structural operation. The text's politics lie in whether it accepts, complicates, or inverts this arrangement."
+
+Framework 3: Transnationalism & Globalization
+The core idea: People, capital, texts, and meanings cross borders. The nation-state is no longer (was never) a sealed container. South Asia is constantly traveling — and being constructed — across borders.
+
+Two distinct flows:
+
+Bodies: Diaspora, migration, refugees, NRIs (non-resident Indians). Movement of people.
+Texts and capital: Books, films, fashion, ideas, commodities. Movement of objects and meanings.
+The crucial asymmetry: Capital and culture move freely; bodies do not. A Bangladeshi shirt enters America without a visa; a Bangladeshi worker cannot. The Kite Runner crosses borders effortlessly; Afghan refugees do not.
+
+Texts:
+
+Kite Runner — Afghan diaspora in California; the novel itself is a transnational object
+Reluctant Fundamentalist — Pakistani Princeton/Wall Street trajectory
+Namesake — Indian-American second-generation
+White Tiger — addressed to the Chinese Premier, signaling India's place in a globalized order
+True Cost / Machinists — supply chains as the infrastructure of globalization
+Manto — partition created the very borders this framework crosses
+Deploy when: Texts involve diaspora, migration, global supply chains, or texts circulating internationally.
+
+Strong move in essay: "Globalization is asymmetric in this text — capital moves but bodies are constrained, or texts circulate but the lives they depict cannot. The text's critical force lies in making this asymmetry visible."
+
+Framework 4: Gendering South Asia
+The core idea: "Gendering" is a verb. It means analyzing how power is structured by gender — how access to public space, narrative, survival, and dignity is unequally distributed along gender lines. Gender is not a topic; it is a lens.
+
+5 mechanisms to recognize:
+
+Public/private binary: Patriarchy relegates women to "private" spaces; any incursion into public is policed as transgression. (Osama makes this explicit through Taliban erasure; Funny Boy through domestic policing of Arjie's gender play.)
+
+Body as territory: Gender violence treats women's bodies as symbolic territory. Partition rapes (Manto, Khamosh Pani) attack communities through women's bodies. The garment worker's body bears the cost of global capital (True Cost).
+
+Honor logic: Women's "honor" stands in for community/national honor. This is why partition violence concentrated on women — to violate them was to violate the other community.
+
+Silence as gendered: Whose speech is heard? Whose silence is read as consent? (Khamosh Pani makes silence visible as the form women's testimony often takes.)
+
+Performance: Osama exposes gender as performance — when the disguise becomes survival, you see that femininity and masculinity are enactments, not essences.
+
+Deploy when: Any prompt mentioning gender, women, sexuality, body, identity, or power.
+
+Strong move in essay: "Gendering [text] reveals not just that women appear in the narrative but that gender is the structural mechanism through which [violence/silence/labour/agency] is distributed. The text exposes gender as a political infrastructure, not a thematic flavor."
+
+Framework 5: Politics of Representation
+The core idea: When X represents Y, something political is happening. Representation is never neutral.
+
+3 layers to interrogate:
+
+Mimesis: How accurately does the representation reflect what it depicts?
+Power: Who has the platform to represent? (Hosseini represents Afghanistan globally; an actual Hazara peasant does not.)
+Reception: Who consumes the representation? What ideological work does it do for them?
+The Western reception problem (recurs across course):
+
+Text	What it offers Western readers	What it lets them avoid
+Kite Runner	Universal redemption arc; understandable Afghanistan	Confronting US complicity in creating the Taliban
+Slumdog Millionaire	Visual spectacle of poverty; rags-to-riches optimism	Structural critique of inequality
+White Tiger	First-person rage from below; sociological texture	(resists this trap — see Hour 2)
+True Cost	Direct confrontation: "you wear what they died making"	(also resists — direct accusation)
+Deploy when: Any text written for or consumed by international audiences; any film with Western directors/funding.
+
+Strong move in essay: "The politics of representation in this text turn on its addressee. Who is being told this story, and what are they invited to do with it? The text either reinforces a centre-margin extraction (the West consumes South Asia as spectacle) or disrupts it (the West is implicated, accused, or destabilized)."
+
+Framework 6: Diaspora & Identity in Displacement
+The core idea: When people move, identity does not stay still. The diasporic subject is forged in the gap between origin and adoption — often unable to fully belong to either.
+
+4 features of the diasporic condition:
+
+Hybridity: Multiple cultural belongings coexist, not always peacefully.
+Frozen homeland: The diasporic "homeland" is reimagined, often more "traditional" than the homeland itself, because culture freezes at the moment of migration.
+Generational gap: First generation experiences displacement; second generation experiences rootlessness without the displacement memory.
+Authenticity wars: Who is the "real" Indian/Pakistani/Afghan? Diasporic communities often police authenticity more rigidly than the homeland.
+Texts:
+
+Kite Runner — Amir's California life as escape, but his Kabul guilt as the unfinished business of diaspora
+Reluctant Fundamentalist — Changez's hybrid identity collapses under post-9/11 pressure; he discovers belonging is not granted by performance
+Namesake — Gogol's Bengali-American negotiation; intergenerational diaspora
+Deploy when: Any text involving migration, exile, refugee, NRI, second-generation experience.
+
+Strong move in essay: "Diaspora is not nostalgia — it is constant negotiation. The text figures identity not as a stable home one carries from origin to destination but as a continuous renegotiation in the gap between."

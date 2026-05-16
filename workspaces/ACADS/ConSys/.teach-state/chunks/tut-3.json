@@ -1,0 +1,74 @@
+{
+  "source_file": "Tut 3.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 3",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1a",
+      "stem": "For the block diagram shown in Fig. Q1(a) (three forward blocks G1, G2, G3 with feedback H1 from second summing junction output, H2 from output, and G4 as outer feedback), first draw the signal flow graph, and then using Mason's gain formula, find closed loop transfer function G(s) = C(s)/R(s).",
+      "topics": ["signal-flow-graph", "block-diagram-reduction"],
+      "primary_topic": "signal-flow-graph",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "BD-to-SFG-then-Masons",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect identification of forward paths when multiple summing junctions exist",
+        "Missing loops or using wrong sign for feedback nodes in delta calculation",
+        "Forgetting to account for non-touching loops in Mason's delta"
+      ],
+      "solution_method": "Convert each summing junction and branch to SFG nodes/branches with appropriate gains (+1 or -1 for feedback). Enumerate all forward paths (P_k) and all loops (L_i); compute delta = 1 - sum(L_i) + sum(non-touching pairs) - ...; apply Mason's formula C/R = sum(P_k * delta_k) / delta.",
+      "key_formulas": [
+        "G(s) = sum_k(P_k * Delta_k) / Delta",
+        "Delta = 1 - sum(L_i) + sum(L_i * L_j non-touching) - ..."
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1b",
+      "stem": "For the block diagram shown in Fig. Q1(b) (three forward blocks G1, G2, G3 with an additional forward path block G4 bypassing intermediate stage, feedback H1 and H2), first draw the signal flow graph, and then using Mason's gain formula, find closed loop transfer function G(s) = C(s)/R(s).",
+      "topics": ["signal-flow-graph", "block-diagram-reduction"],
+      "primary_topic": "signal-flow-graph",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "BD-to-SFG-then-Masons",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Missing the additional forward path through G4 when enumerating paths",
+        "Incorrectly determining which loops are non-touching with each forward path",
+        "Sign errors on feedback branches when drawing SFG"
+      ],
+      "solution_method": "Identify all nodes from the block diagram summing junctions and branch points. Draw SFG with appropriate transmittances. Enumerate forward paths (P1 via G1G2G3, P2 via G4 alternate path), find all individual loops and non-touching loop products, compute delta and cofactors delta_k, then apply Mason's formula.",
+      "key_formulas": [
+        "G(s) = sum_k(P_k * Delta_k) / Delta",
+        "Delta = 1 - sum(L_i) + sum(L_i * L_j non-touching) - ..."
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "For the liquid level system of two interacting tanks, governed by: sC1*dH1 = dQ - dQ1; dQ1 = (dH1 - dH2)/R1; sC2*dH2 = dQ1 - dQ2; dQ2 = dH2/R2. Draw the signal flow graph and using Mason's gain formula find G(s) = dQ2(s)/dQ(s).",
+      "topics": ["signal-flow-graph", "mathematical-modelling"],
+      "primary_topic": "signal-flow-graph",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "physical-system-SFG-Masons",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect SFG construction from interacting-tank equations (missing the H2-to-Q1 interaction branch)",
+        "Treating the interacting tanks as non-interacting (missing the -1/R1 branch from dH2 to dQ1)",
+        "Arithmetic errors in expanding the characteristic polynomial with two coupled loops"
+      ],
+      "solution_method": "Assign SFG nodes: dQ, dH1, dQ1, dH2, dQ2. Draw branches: dQ->dH1 (1/sC1), dH1->dQ1 (1/R1), dH2->dQ1 (-1/R1), dQ1->dH2 (1/sC2), dH2->dQ2 (1/R2), dQ1->dH1 (-1), dQ2->dH2 (-1). Apply Mason's: single forward path P1 = (1/sC1)(1/R1)(1/sC2)(1/R2); identify loops L1 = (1/R1)(-1/sC1) and L2 = (1/R2)(-1/sC2) and cross loop; compute delta; result is G(s) = 1/(R2(C1C2R1s^2 + (C1+C2+C1R1/R2... )s + 1)).",
+      "key_formulas": [
+        "G(s) = P1*Delta1 / Delta",
+        "Delta = 1 - (L1 + L2 + L12) + L1*L2 (if non-touching)",
+        "Final TF: G(s) = 1 / (R1R2C1C2*s^2 + (R1C1 + R2C2 + R1C2)*s + 1)"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial sheet dated 27 January 2026. Q1 has two sub-parts (a) and (b) with different block diagram configurations; both require SFG conversion and Mason's formula. Q2 applies Mason's to a physically-derived interacting tank model — higher difficulty due to coupled loops."
+}

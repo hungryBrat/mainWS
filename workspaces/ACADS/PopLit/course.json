@@ -1,0 +1,248 @@
+{
+  "schema_version": 3,
+  "course_slug": "pop-lit-south-asia-2026",
+  "course_name": "Popular Literature and Culture of South Asia",
+  "course_code": "HSS F316",
+  "institution": "BITS Pilani",
+  "academic_term": "Second Semester 2025-26",
+  "ingested_at": "2026-05-03",
+
+  "course_structure": "unit",
+
+  "domain_prerequisites": [
+    {"subject": "introductory literary studies", "level": "none assumed"},
+    {"subject": "south asian history", "level": "general awareness"}
+  ],
+
+  "evaluation_components": [
+    {
+      "id": "continuous",
+      "name": "Continuous Evaluations",
+      "type": "coursework",
+      "weight": 0.40,
+      "date": null,
+      "duration_min": 45,
+      "format": "take_home",
+      "scope": {"type": "rolling"},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "Three in-class essays (20%) + one post-midsem assignment (20%). Two best essays count."
+    },
+    {
+      "id": "mid-sem",
+      "name": "Mid Semester",
+      "type": "written_exam",
+      "weight": 0.20,
+      "date": null,
+      "duration_min": 90,
+      "format": "open_book",
+      "scope": {"type": "units", "ids": [1, 2, 3, 4]},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "As per AUGSD schedule. Open book."
+    },
+    {
+      "id": "comp",
+      "name": "Comprehensive",
+      "type": "written_exam",
+      "weight": 0.40,
+      "date": "2026-05-04",
+      "duration_min": 180,
+      "format": "open_book",
+      "scope": {"type": "all"},
+      "recurrence": null,
+      "best_of": null,
+      "notes": "Open book. 3 hours. Covers entire course. High-value: 40% of grade."
+    }
+  ],
+
+  "topics": [
+    {
+      "id": "south-asia-introduction",
+      "name": "Introduction to South Asia",
+      "aliases": ["culture as process", "transnationalism", "margin-centre framework", "diaspora"],
+      "unit_ref": {"type": "unit", "id": 1},
+      "prerequisites": [],
+      "prerequisites_source": "empty",
+      "syllabus_weight": 0.07,
+      "textbook_refs": ["Reading Material"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 3, "apply": 2, "analyze": 1, "evaluate": 0, "create": 0},
+      "key_concepts": [
+        "Culture as Process (not a fixed artifact but dynamic, contested)",
+        "Borders & Territoriality (colonial cartography, porous borders)",
+        "Margin-Centre Framework (who speaks, who is heard, from where)",
+        "Transnationalism & Globalization (texts travel; meaning shifts)",
+        "Diaspora (identity in displacement)",
+        "Gendering South Asia (gender as lens across all units)",
+        "Violence & Conflict (structural and interpersonal)",
+        "Censorship (what is suppressed and why — Manto trials, Taliban erasure)",
+        "Emergent South Asia (Bangladesh tiger, Bhutan GNH, Nepal democracy)"
+      ]
+    },
+    {
+      "id": "afghanistan",
+      "name": "Afghanistan",
+      "aliases": ["kite runner", "osama 2003", "gendered violence"],
+      "unit_ref": {"type": "unit", "id": 2},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.14,
+      "textbook_refs": ["The Kite Runners", "Osama (2003 film)"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 3, "analyze": 3, "evaluate": 1, "create": 0},
+      "key_concepts": [
+        "Osama — gender: erasure of public space for women under Taliban; performing mandated roles; power and surveillance; public/private binary collapse; agency under constraint",
+        "Kite Runner — framing and reception: what stories gain global acceptance; constructing 'South Asia' for Western audience; universal vs local; 'Afghanistan meets the Amazon' (Western reading practices)",
+        "Socio-political history of Afghanistan: Soviet invasion → civil war → Taliban → post-9/11",
+        "Who tells the story? — narrative legitimacy, whose voice is amplified"
+      ]
+    },
+    {
+      "id": "pakistan",
+      "name": "Pakistan",
+      "aliases": ["manto", "partition", "khamosh pani", "reluctant fundamentalist"],
+      "unit_ref": {"type": "unit", "id": 3},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.16,
+      "textbook_refs": ["Saadat Hasan Manto", "The Reluctant Fundamentalist (2013)", "Khamosh Pani (film)"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 3, "analyze": 3, "evaluate": 2, "create": 0},
+      "key_concepts": [
+        "Manto: partition as backdrop (not explicit political history but human cost); art of character writing (marginalized — sex workers, criminals, the mad); center-margin inversion; obscenity trials as productive censorship (what the state finds threatening reveals power structure)",
+        "Khamosh Pani: gendering the partition (women as victims/survivors/sites of honor); partition as CONTINUED event (not a historical closure); silence as stylistic and political device; reading silence (Urvashi Butalia's work on women's voices)",
+        "Reluctant Fundamentalist: post-9/11 identity; Pakistan in Western gaze; hybrid identity and its collapse under geopolitical pressure",
+        "Center-margin: colonial power, state power, narrative power"
+      ]
+    },
+    {
+      "id": "bangladesh-nepal",
+      "name": "Bangladesh and Nepal",
+      "aliases": ["taslima nasrin", "lajja", "rana plaza", "garment industry", "hands"],
+      "unit_ref": {"type": "unit", "id": 4},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.14,
+      "textbook_refs": ["Taslima Nasrin - Lajja", "The Machinists (2012)", "The True Cost (2015)", "Hands (story)"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 3, "analyze": 2, "evaluate": 1, "create": 0},
+      "key_concepts": [
+        "Bangladesh: Rana Plaza Collapse (2013) — global labour networks; garment industry as North-South exploitation; critique of technocratic/CSR solutions; dignity of labour; culture as process (labouring bodies, fashion industry)",
+        "Bangladesh as 'emerging South Asian tiger' — development and its discontents",
+        "Nepal — 'Hands': dream narrative structure; intergenerational conflict as political allegory; symbolism of hands (labour, craft, generation); Nepal's marginality in South Asian discourse",
+        "Canon formation: what counts as literature; whose culture is studied"
+      ]
+    },
+    {
+      "id": "bhutan",
+      "name": "Bhutan",
+      "aliases": ["circle of karma", "kunzang choden", "buddhism", "karma"],
+      "unit_ref": {"type": "unit", "id": 5},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.09,
+      "textbook_refs": ["The Circle of Karma - Kunzang Choden"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 2, "analyze": 3, "evaluate": 1, "create": 0},
+      "key_concepts": [
+        "Circle of Karma: memory-based narrative structure; body as site of labour and suffering; spirituality vs materiality tension",
+        "Karma as structuring principle: culturally embedded epistemology (a way of knowing AND organizing experience)",
+        "Karma's productive AND limiting functions — not just fatalism but active ethical framework",
+        "Buddhism in contemporary Bhutan: cultural/social context; gender roles within Buddhist framework",
+        "Bhutan's uniqueness in South Asia: GNH (Gross National Happiness) ideology; isolation and modernization"
+      ]
+    },
+    {
+      "id": "srilanka",
+      "name": "Sri Lanka",
+      "aliases": ["funny boy", "shyam selvadurai", "ethnic conflict", "tamils"],
+      "unit_ref": {"type": "unit", "id": 6},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.12,
+      "textbook_refs": ["Funny Boy - Shyam Selvadurai"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 3, "analyze": 3, "evaluate": 1, "create": 0},
+      "key_concepts": [
+        "Funny Boy: Sri Lankan conflict (Sinhalese-Tamil, 1983 riots) as backdrop",
+        "Double exclusion: ethnic minority (Tamil) + sexuality (queer) — intersectionality of marginalization",
+        "Intimate geopolitics: how macro-political conflict shapes micro-domestic/personal spaces; everyday reproduction of conflict",
+        "Minority discourse: how minorities negotiate identity, belonging, violence",
+        "Queer identity in South Asian context — silence, naming, coming-of-age"
+      ]
+    },
+    {
+      "id": "india",
+      "name": "India",
+      "aliases": ["white tiger", "slumdog millionaire", "aravind adiga", "rooster coop", "neoliberal"],
+      "unit_ref": {"type": "unit", "id": 7},
+      "prerequisites": ["south-asia-introduction"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.14,
+      "textbook_refs": ["The White Tiger - Aravind Adiga", "Slumdog Millionaire (2008)"],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 1, "understand": 2, "apply": 3, "analyze": 3, "evaluate": 2, "create": 0},
+      "key_concepts": [
+        "Neoliberal framework: promise of meritocracy vs reality of structural inequality; India shining vs India struggling",
+        "Narrative structure: epistolary (letters to Chinese premier) — who is the audience? why does Balram need to explain himself?",
+        "Spatial structure: Light (city/Gurgaon/freedom) vs Darkness (village/servitude); Balram's transgression between both",
+        "The Rooster Coop: why the poor don't rebel — internalized servitude, complicity, family as hostage",
+        "Balram as white tiger AND entrepreneur: exceptional individual vs structural change; does his success critique or affirm neoliberalism?",
+        "Slumdog Millionaire: Western gaze on Indian poverty (poverty porn debate); game show as metaphor for luck/fate/capitalism"
+      ]
+    },
+    {
+      "id": "comparative-analysis",
+      "name": "Comparative Analysis",
+      "aliases": ["cross-text", "south asia as region", "common heritage", "diversity"],
+      "unit_ref": {"type": "unit", "id": 8},
+      "prerequisites": ["south-asia-introduction", "afghanistan", "pakistan", "bangladesh-nepal", "bhutan", "srilanka", "india"],
+      "prerequisites_source": "syllabus_units",
+      "syllabus_weight": 0.07,
+      "textbook_refs": [],
+      "exam_frequency": {"by_year_own": {}, "weighted_own": null, "weighted_external": null},
+      "bloom_distribution": {"recall": 0, "understand": 1, "apply": 2, "analyze": 4, "evaluate": 3, "create": 2},
+      "key_concepts": [
+        "South Asia as a region: unity in diversity — common colonial history, shared cultural flows, yet distinct national trajectories",
+        "Cross-cutting themes: gender/gendered violence (Osama, Khamosh Pani, Circle of Karma, Funny Boy); partition and its afterlives (Manto, Khamosh Pani); labour exploitation (Bangladesh, White Tiger, Slumdog); minority voices (Funny Boy, Manto's characters, Nepal's marginality)",
+        "Margin-centre across all texts: who is centered, who is marginal, and why",
+        "Culture as process: none of these texts presents culture as static — all show culture being contested, negotiated, performed",
+        "Western reception of South Asian texts: Kite Runner, Slumdog — what gets circulated and why"
+      ]
+    }
+  ],
+
+  "exam_questions": [],
+
+  "orphans": {
+    "questions_without_solutions": [],
+    "solutions_without_questions": []
+  },
+
+  "bundle_files": [],
+
+  "syllabus_exam_mismatches": [
+    {
+      "topic": "south-asia-introduction",
+      "direction": "under_taught",
+      "syllabus_weight": 0.07,
+      "exam_frequency_weighted_own": null,
+      "note": "Theoretical frameworks from introductory lectures (culture as process, margin-centre, diaspora) recur as analytical tools across ALL units — high exam value despite low lecture count"
+    },
+    {
+      "topic": "comparative-analysis",
+      "direction": "under_taught",
+      "syllabus_weight": 0.07,
+      "exam_frequency_weighted_own": null,
+      "note": "Final 3 lectures explicitly on comparative analysis; comprehensive exam likely has a comparative question — prioritize in last 2 study hours"
+    },
+    {
+      "topic": "bhutan",
+      "direction": "over_taught",
+      "syllabus_weight": 0.09,
+      "exam_frequency_weighted_own": null,
+      "note": "4 lectures only; Circle of Karma is niche — likely one question max; do not over-invest relative to Pakistan/India/Afghanistan"
+    }
+  ]
+}

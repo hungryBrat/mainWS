@@ -1,0 +1,88 @@
+{
+  "source_file": "Quiz 4_CONSYS (Solution).pdf",
+  "content_type": "quiz_solution",
+  "year_label": "2025-26 Quiz 4",
+  "year_canonical": 2026,
+  "evaluation_component": "quiz",
+  "questions": [
+    {
+      "id": "Q-2026-quiz-1a",
+      "stem": "For unity feedback closed loop system with G(s)H(s) = K(s+2)/(s(s+1)(s+3)): Indicate the portion of root locus which will lie on real axis of s-plane. Show it in Fig. 1.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 1,
+      "bloom_level": "apply",
+      "problem_type": "real-axis-rl-segments",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Forgetting to count total poles+zeros to the right of a test point",
+        "Including zeros in the pole count or vice versa"
+      ],
+      "solution_method": "n=3, m=1; poles at p1=0, p2=-1, p3=-3; zero at z1=-2. Real axis RL exists to the left of an odd count of real poles+zeros: segments (-∞,-3), (-2,-1), and (0, right half-plane excluded).",
+      "key_formulas": ["Real axis rule: RL on real axis where total real poles+zeros to the right is odd"],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1b",
+      "stem": "For the same system G(s)H(s) = K(s+2)/(s(s+1)(s+3)): Calculate the angle of asymptotes and centroid and show it in Fig. 1.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 2,
+      "bloom_level": "apply",
+      "problem_type": "asymptote-angle-centroid",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using n instead of (n-m) for number of asymptotes",
+        "Sign error in centroid formula: forgetting to subtract zero locations",
+        "Using q starting from 1 instead of 0"
+      ],
+      "solution_method": "Number of asymptotes = n-m = 3-1 = 2. Angles: φ_A = (2q+1)×180°/(n-m) for q=0,1 → 90°, 270°. Centroid: σ_A = (sum of poles - sum of zeros)/(n-m) = (0-1-3-(-2))/2 = -2/2 = -1.",
+      "key_formulas": [
+        "φ_A = (2q+1)×180° / (n-m), q = 0, 1, ..., (n-m-1)",
+        "σ_A = (Σpoles - Σzeros) / (n-m)"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1c",
+      "stem": "For the same system G(s)H(s) = K(s+2)/(s(s+1)(s+3)): Find the breakaway point and indicate it clearly in Fig. 1.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 2,
+      "bloom_level": "analyze",
+      "problem_type": "breakaway-point-dk-ds-zero",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not verifying which roots of dK/ds=0 are actually on the root locus",
+        "Algebraic errors when differentiating K(s)",
+        "Accepting complex roots as breakaway points without checking RL membership"
+      ],
+      "solution_method": "Express K = -(s³+4s²+3s)/(s+2) from characteristic equation 1+G(s)H(s)=0. Set dK/ds=0: differentiate using quotient rule to get 2s³+10s²+16s+6=0. Roots: s=-0.534 (valid, on real-axis RL segment), s=-2.23±0.792j (complex, not valid). Breakaway point is s≈-0.534.",
+      "key_formulas": [
+        "1 + K(s+2)/(s(s+1)(s+3)) = 0 → K = -s(s+1)(s+3)/(s+2)",
+        "dK/ds = 0",
+        "Quotient rule: d/ds[N/D] = (N'D - ND')/D²"
+      ],
+      "stem_reconstructed_from_solution": true
+    },
+    {
+      "id": "Q-2026-quiz-1d",
+      "stem": "For the same system G(s)H(s) = K(s+2)/(s(s+1)(s+3)): Draw the complete root locus in Fig. 1.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 1,
+      "bloom_level": "apply",
+      "problem_type": "complete-root-locus-sketch",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Not showing branches departing along asymptotes at 90°/270° from centroid (-1)",
+        "Missing the breakaway point at s≈-0.534",
+        "Incorrect direction of locus on real axis segments"
+      ],
+      "solution_method": "Combine results from (a)-(c): draw real-axis segments, mark centroid at -1, asymptotes at ±90° from σ=-1, show breakaway at s≈-0.534 between poles 0 and -1, branches from s=0 and s=-1 break away and travel along ±j∞ asymptotes; branch from s=-3 travels to zero at s=-2.",
+      "key_formulas": ["Complete RL uses: real-axis rule, asymptote angles and centroid, breakaway points, departure/arrival angles"],
+      "stem_reconstructed_from_solution": true
+    }
+  ],
+  "notes": "Single question with 4 sub-parts (a-d), all on root locus for G(s)H(s)=K(s+2)/(s(s+1)(s+3)). Total marks: 6. Date: 24.03.2026. Duration: 12 minutes. Complete root locus sketch included in solution (Fig. 1)."
+}

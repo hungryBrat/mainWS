@@ -1,0 +1,130 @@
+{
+  "source_file": "Tutorial 8.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 8",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "For the system shown in Fig. Q1, find N1/N2 so that the settling time (2% tolerance band) for a step torque input is 16 seconds. Also, find the value of damping ratio, natural frequency and static gain of the system for this value of N1/N2. The system has a primary inertia of 1 kg-m² connected via gear ratio N1/N2 to a secondary shaft with 1 kg-m² inertia, a spring of 1 N-m/rad, and a damper of 1 N-m-s/rad.",
+      "topics": ["mathematical-modelling", "time-domain-specs"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "gear-ratio-design-settling-time",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Forgetting to reflect inertia and spring/damper constants through gear ratio squared",
+        "Using wrong settling time formula (ts = 4/ζωn for 2% criterion)",
+        "Not computing static gain of the resulting system"
+      ],
+      "solution_method": "Reflect all secondary-side parameters (inertia, spring, damper) to the primary shaft using (N1/N2)² scaling to get an equivalent 2nd-order system. Use ts = 4/(ζωn) = 16 s to establish a constraint, then solve for N1/N2. Back-compute ζ, ωn, and static gain K = 1/k_eq.",
+      "key_formulas": [
+        "J_eq = J1 + (N1/N2)^2 * J2",
+        "k_eq = (N1/N2)^2 * k",
+        "b_eq = (N1/N2)^2 * b",
+        "ts(2%) = 4 / (ζ * ωn)",
+        "ωn = sqrt(k_eq / J_eq)",
+        "ζ = b_eq / (2 * sqrt(J_eq * k_eq))"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2a",
+      "stem": "A motor and generator are set up to drive a load as shown in Fig. Q2. The generator output voltage is e_g(t) = K_f * i_f(t). For the generator: K_f = 2Ω, motor: K_t = 1 N-m/A, K_b = 1 V-s/rad. The motor armature inertia J_a = 0.75 kg-m², armature resistance 1Ω, field circuit resistance 1Ω and inductance 1H. Load inertia 4 kg-m², gear ratio 1:10 between motor and load, load damping 4 N-m-s/rad. Find the transfer function G(s) = θ_o(s)/E_i(s) in zero-pole-gain form.",
+      "topics": ["mathematical-modelling", "control-components"],
+      "primary_topic": "mathematical-modelling",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "electromechanical-TF-derivation",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to reflect load inertia and damping through gear ratio squared to motor shaft",
+        "Missing back-EMF term in armature voltage equation",
+        "Not accounting for field circuit dynamics (1H inductance adds a pole)",
+        "Incorrect zero-pole-gain form normalization"
+      ],
+      "solution_method": "Write field circuit equation: E_i(s) = I_f(s)(1 + s). Then E_g(s) = K_f * I_f(s). Write armature circuit: E_g(s) = I_a(s)(R_a + R_arm) + K_b * s * Θ_m(s). Torque equation: K_t * I_a(s) = (J_eq * s² + B_eq * s) * Θ_m(s) where J_eq and B_eq include reflected load. Θ_o = Θ_m / 10. Cascade all sub-TFs and simplify to zero-pole-gain form.",
+      "key_formulas": [
+        "E_g(s) = K_f * I_f(s) = 2 * I_f(s)",
+        "Field circuit: E_i(s) = I_f(s) * (R_f + L_f * s) = I_f(s)(1 + s)",
+        "Armature: E_g(s) = I_a(s)(R_a + R_motor) + K_b * s * Θ_m(s)",
+        "Torque: T_m(s) = K_t * I_a(s) = J_eq * s^2 * Θ_m(s) + B_eq * s * Θ_m(s)",
+        "J_eq = J_a + J_load/n^2, B_eq = B_load/n^2, n=10",
+        "Θ_o(s) = Θ_m(s) / n"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2b",
+      "stem": "Using the motor-generator system of Q2(a), θ_o is to be controlled with a unity-feedback loop and proportional controller with gain K_c. Find K_c to achieve a steady-state error of 0.01 rad for a ramp reference input. Assume feedback gain unity.",
+      "topics": ["steady-state-error", "PID-controller"],
+      "primary_topic": "steady-state-error",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "proportional-gain-ramp-sse-design",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Using position error constant Kp instead of velocity error constant Kv for ramp input",
+        "Not accounting for existing plant poles at origin when computing Kv",
+        "Forgetting to multiply by K_c in the open-loop gain"
+      ],
+      "solution_method": "Identify system type from G(s) obtained in Q2(a). For a ramp input, ess = 1/Kv where Kv = lim[s→0] s * K_c * G(s). Set ess = 0.01 and solve for K_c.",
+      "key_formulas": [
+        "e_ss(ramp) = 1 / Kv",
+        "Kv = lim_{s→0} s * K_c * G(s)",
+        "e_ss = 0.01 rad => Kv = 100"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3a",
+      "stem": "Consider the position servomechanism in Fig. Q3 with forward path: K1 → K_A → K/[s(τs+1)], unity feedback. Given τ = 0.02 s, K = 0.1, K1 = 1. Find ωn and ζ for amplifier gain K_A = 500 V/V. What is the steady-state error for a unit step and a unit ramp input?",
+      "topics": ["time-domain-specs", "steady-state-error"],
+      "primary_topic": "time-domain-specs",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "2nd-order-specs-and-sse",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Misidentifying system type (type 1 → zero sse for step, finite for ramp)",
+        "Incorrect closed-loop CE formation from cascaded blocks",
+        "Computing ωn and ζ from open-loop rather than closed-loop characteristic equation"
+      ],
+      "solution_method": "Open-loop TF: G(s) = K1*K_A*K / [s(τs+1)] = 0.1*500 / [s(0.02s+1)] = 50/[s(0.02s+1)]. Closed-loop CE: 0.02s² + s + 50 = 0, i.e., s² + 50s + 2500 = 0. Read off ωn = 50 rad/s, ζ = 0.5. System is type 1: ess(step) = 0, ess(ramp) = 1/Kv = 1/50 = 0.02 rad.",
+      "key_formulas": [
+        "OLTF: G(s) = K1*K_A*K / [s(τs+1)]",
+        "CLTF CE: τs² + s + K1*K_A*K = 0",
+        "ωn = sqrt(K1*K_A*K / τ)",
+        "ζ = 1 / (2 * ωn * τ)",
+        "Kv = lim_{s→0} s*G(s) = K1*K_A*K",
+        "e_ss(ramp) = 1/Kv"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3b",
+      "stem": "For the servomechanism of Q3, a PD controller with transfer function (K_d/K_A * s + 1) is added in the forward path. Find K_d such that the closed-loop dynamics have a relative damping ratio of unity (critically damped).",
+      "topics": ["PID-controller", "time-domain-specs"],
+      "primary_topic": "PID-controller",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "PD-controller-design-critical-damping",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Forgetting the PD controller introduces a zero, not just extra damping in CE",
+        "Setting ζ = 1 without re-deriving CE with the PD term",
+        "Algebraic errors in expanding the modified CE"
+      ],
+      "solution_method": "With PD controller C(s) = (K_d/K_A)*s + 1, the open-loop becomes G_c(s)*G(s) = K1*K_A*K*((K_d/K_A)s+1)/[s(τs+1)]. Closed-loop CE: τs² + (1 + K1*K*K_d)s + K1*K_A*K = 0. For ζ=1: (1 + K1*K*K_d)² = 4τ*K1*K_A*K. Solve for K_d.",
+      "key_formulas": [
+        "CE with PD: τs² + (1 + K*K1*K_d)s + K1*K_A*K = 0",
+        "ζ = (1 + K*K1*K_d) / (2*sqrt(τ*K1*K_A*K)) = 1",
+        "=> 1 + K*K1*K_d = 2*sqrt(τ*K1*K_A*K)"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 3 March 2026. Three questions total; Q2 and Q3 each have two parts extracted as separate entries. All problems involve electromechanical modelling and time-domain analysis. No marks assigned (tutorial, not graded)."
+}

@@ -1,0 +1,135 @@
+{
+  "source_file": "Tut 9_17th-Mar.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 9 (17 Mar)",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1a",
+      "stem": "Given unity feedback system with G(s) = K(s+5) / [s(s+1.2)(s+3)], find the range of K that keeps the system stable.",
+      "topics": ["stability-RH", "root-locus"],
+      "primary_topic": "stability-RH",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "rh-stability-K-range",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Arithmetic error building Routh array rows",
+        "Forgetting to include the zero-gain boundary (K=0) in the range",
+        "Sign error in characteristic equation from unity feedback"
+      ],
+      "solution_method": "Form closed-loop CE: s(s+1.2)(s+3) + K(s+5) = 0. Expand, build 4-row Routh array. Require all first-column entries > 0 to find the K range.",
+      "key_formulas": ["CE: s^3 + 4.2s^2 + 3.6s + K(s+5) = 0 → s^3 + 4.2s^2 + (3.6+K)s + 5K = 0", "Routh stability: all first-column signs positive"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1b",
+      "stem": "For the same system G(s) = K(s+5) / [s(s+1.2)(s+3)] with unity feedback, find the value of K that makes the system oscillate.",
+      "topics": ["stability-RH"],
+      "primary_topic": "stability-RH",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "rh-marginal-K-oscillation",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using the wrong row to form the auxiliary equation",
+        "Solving for K from the wrong Routh row"
+      ],
+      "solution_method": "Set the s^1 row of the Routh array to zero and solve for K (marginal stability condition). This gives K_marginal.",
+      "key_formulas": ["s^1 row element = 0 → solve K"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1c",
+      "stem": "For the same system, find the frequency of oscillation when K is set to the value that makes the system oscillate.",
+      "topics": ["stability-RH"],
+      "primary_topic": "stability-RH",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "rh-oscillation-frequency",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Using the s^1 row instead of the auxiliary polynomial from the s^2 row",
+        "Forgetting to take sqrt to get omega from omega^2"
+      ],
+      "solution_method": "Substitute K_marginal into the s^2 row to form the auxiliary polynomial A(s) = as^2 + b = 0. Solve for s = ±jω to get the oscillation frequency ω.",
+      "key_formulas": ["A(s) = (s^2 row coefficient)*s^2 + (constant row) = 0", "ω = sqrt(b/a)"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "For the polynomial S^6 + 3s^5 + 4s^4 + 6s^3 + 5s^2 + 3s + 2, determine the number of poles in the LHP, RHP, and on the imaginary axis. Determine the values of all poles and indicate their locations in the s-plane.",
+      "topics": ["stability-RH"],
+      "primary_topic": "stability-RH",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "rh-pole-count-full-factoring",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Mishandling zero in first column — failing to use epsilon method or auxiliary polynomial",
+        "Incorrect sign-change count after epsilon substitution",
+        "Not factoring out auxiliary polynomial to find imaginary-axis poles",
+        "Arithmetic errors in 6th-order Routh array"
+      ],
+      "solution_method": "Build the 7-row Routh array. Handle any special cases (zero in first column or zero row). Count sign changes in first column for RHP poles. Use auxiliary polynomial when a zero row appears to find imaginary-axis poles. Factor the characteristic polynomial or use the auxiliary polynomial roots for exact pole values.",
+      "key_formulas": ["# RHP poles = sign changes in first column", "Auxiliary poly A(s) from zero-row: A(s)=0 gives imaginary-axis poles", "LHP = 6 − RHP − IAP"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-3",
+      "stem": "Find the value of K in the system of Fig. Q2(a) (which includes blocks K/s^2, 2/s, 1/(s+1), and an input pre-filter s^2) that will place the closed-loop poles at the locations shown in Fig. Q2(b) (poles at -1 ± j1 and a real pole, visible on s-plane sketch).",
+      "topics": ["root-locus", "stability-RH", "block-diagram-reduction"],
+      "primary_topic": "root-locus",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "find-K-for-desired-poles",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Incorrect block diagram reduction leading to wrong open-loop TF",
+        "Using angle condition without verifying the point lies on the root locus",
+        "Arithmetic error computing |G(s)H(s)| at the desired pole"
+      ],
+      "solution_method": "Reduce the block diagram to find the closed-loop characteristic equation as a function of K. Substitute the desired closed-loop pole locations (read from Fig. Q2(b)) into the CE and solve for K using the magnitude condition |G(s_d)H(s_d)| = 1.",
+      "key_formulas": ["|G(s_d)| = 1/K → K = 1/|G(s_d)|", "Characteristic equation: 1 + K*G_OL(s) = 0"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4a",
+      "stem": "For the closed-loop system with G_c(s) = (s+α)/(s+4) and G(s) = K/[s(s+2)(s+4)] in unity feedback (Fig. Q3), determine the values of α and K for the overall system to be stable.",
+      "topics": ["stability-RH", "steady-state-error"],
+      "primary_topic": "stability-RH",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "rh-stability-two-parameters",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Not simplifying (s+4) cancellation in G_c(s)·G(s) before forming CE",
+        "Treating α as fixed when building Routh array — must keep it symbolic",
+        "Inequalities wrong direction when solving simultaneous Routh conditions"
+      ],
+      "solution_method": "Compute open-loop TF G_c(s)G(s) = K(s+α)/[s(s+2)(s+4)^2] noting the (s+4) in G_c denominator does not cancel with G(s)'s (s+4). Form CE = s(s+2)(s+4)^2 + K(s+α) = 0, expand, build Routh array with symbolic K and α. Apply all first-column > 0 conditions to find the stability region in (α, K) space.",
+      "key_formulas": ["CE: s(s+2)(s+4)^2 + K(s+α) = 0", "Routh first-column positivity conditions"],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-4b",
+      "stem": "For the same system (Fig. Q3), suggest suitable values of α and K while assuring that the steady-state error due to a unit ramp input is no more than 20%.",
+      "topics": ["steady-state-error", "stability-RH"],
+      "primary_topic": "steady-state-error",
+      "marks": null,
+      "bloom_level": "evaluate",
+      "problem_type": "design-alpha-K-sse-ramp-constraint",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Using Kv formula without accounting for the pole-zero cancellation structure",
+        "Selecting (α, K) satisfying sse ≤ 0.2 but forgetting to verify stability",
+        "Confusing 20% steady-state error with e_ss ≤ 0.2 vs e_ss ≤ 0.2·ramp-slope"
+      ],
+      "solution_method": "From part (a), identify the stability region. Compute velocity constant Kv = lim_{s→0} s·G_c(s)G(s) = Kα/32. For unit ramp, e_ss = 1/Kv ≤ 0.20 → Kα ≥ 160. Pick (α, K) satisfying Kα ≥ 160 within the stable region and verify via Routh.",
+      "key_formulas": ["Kv = lim_{s→0} s·G_c(s)G(s) = Kα/(2·16) = Kα/32", "e_ss = 1/Kv ≤ 0.20 → Kα ≥ 160"],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Q3 block diagram involves a forward-path pre-filter s^2 and multiple inner loops; exact pole locations in Fig. Q2(b) show two complex poles at approximately -1±j1 and one real pole near -2, inferred visually from the s-plane sketch."
+}

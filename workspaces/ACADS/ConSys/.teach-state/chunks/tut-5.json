@@ -1,0 +1,61 @@
+{
+  "source_file": "Tut 5.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 5",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1",
+      "stem": "An armature-controlled DC motor and its speed-torque characteristics is shown in Fig. 1(a) and Fig. 1(b). Parameters: Ra (armature resistance), Jm = 5 kg-m², Bm = 2 N-m s/rad, JL = 700 kg-m², BL = 800 N-m s/rad, gear ratio N1/N2 = 100/1000 = 1/10. Speed-torque curve: at ea = 100 V, stall torque = 500 N-m, no-load speed = 50 rad/s. Find the transfer function θL(s)/Ea(s).",
+      "topics": ["mathematical-modelling", "control-components"],
+      "primary_topic": "control-components",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "derive-TF-armature-DC-motor-gear",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to refer load inertia and friction through gear ratio squared to motor shaft",
+        "Misreading Km and Kb from speed-torque curve (slope vs intercept)",
+        "Not accounting for Ra in the electrical equation when Ra is unlabelled but implied"
+      ],
+      "solution_method": "From speed-torque characteristic extract motor parameters: Km = T_stall/ea = 500/100 = 5 N-m/A (or V-s/rad for Kb by equality). Refer load J and B through gear ratio n=N1/N2=0.1 to motor shaft: Jeq = Jm + n²JL, Beq = Bm + n²BL. Write armature KVL and motor torque equations, Laplace transform, then apply gear ratio θL = n·θm to get θL(s)/Ea(s) = n·Km / [s((Ra(Jeq·s + Beq)) + Km·Kb)].",
+      "key_formulas": [
+        "Jeq = Jm + n²·JL",
+        "Beq = Bm + n²·BL",
+        "n = N1/N2",
+        "Km = T_stall / ea_rated",
+        "Kb = ea_rated / ω_no_load",
+        "θL(s)/Ea(s) = n·Km / [s(Ra(Jeqs + Beq) + KmKb)]"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "The schematic diagram of a servo motor is shown in Fig. 2(a). Draw the block diagram and determine the transfer function θL(s)/θR(s). Given: Ks = 30 V/rad, KA = 20 V/V, JL = 1 kg-m², BL = 4 Nm/rad/s, motor J and B negligible, linearised torque-speed curve (Fig. 2b): stall torque = 2 Nm, no-load speed = 3000 rpm with 115 V 50 Hz control winding. Gear ratios: θL/θm = 1/2, θm/θs = 1/1.",
+      "topics": ["control-components", "mathematical-modelling", "block-diagram-reduction"],
+      "primary_topic": "control-components",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "block-diagram-AC-servomotor-synchro-TF",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Not converting no-load speed from rpm to rad/s before computing motor slope Bm",
+        "Forgetting to refer load inertia/friction through gear ratio squared",
+        "Incorrect feedback sign or missing Ks in the block diagram",
+        "Confusing θm/θs gear ratio with θL/θm gear ratio in the chain"
+      ],
+      "solution_method": "Extract AC servomotor parameters from torque-speed curve: no-load speed ω0 = 3000 rpm = 100π rad/s, stall torque T0 = 2 Nm; motor slope (viscous drag) Bm_motor = T0/ω0 = 2/(100π), motor gain Km = T0/Vc = 2/115 (if referred to control voltage, but typically just slope suffices). With n = θL/θs = (1/2)·(1/1) = 1/2, refer load: Jeq = JL·n², Beq = BL·n². Motor TF (position): Gm(s) = Km/[s(Jeqs + Beq + Bm_motor_equivalent)]. Closed-loop TF θL(s)/θR(s) = Ks·KA·Gm(s)·(1/2) / [1 + Ks·KA·Gm(s)·(1/2)].",
+      "key_formulas": [
+        "ω0 = 3000 rpm × (2π/60) = 100π rad/s",
+        "Km = T_stall / V_control",
+        "Bm = T_stall / ω0",
+        "n_total = (θm/θs)·(θL/θm) = 1·(1/2) = 1/2",
+        "Jeq = JL·n²_total, Beq = BL·n²_total",
+        "CLTF = Ks·KA·Km·n / [s(Jeqs + Beq) + Ks·KA·Km·n]"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Two-question tutorial on control components (Module 3). Both questions involve DC/AC servomotor TF derivation with gear trains. Q1 uses armature-controlled DC motor with numerical graph data; Q2 uses AC servomotor with synchro error detector, amplifier, and gear train in a closed-loop position control system. Figures (circuit diagram, torque-speed curves, servo schematic) are image-based — parameter values extracted from figure annotations."
+}

@@ -1,0 +1,261 @@
+{
+  "source_file": "Control Systems 2008-09 Comprehensive.pdf",
+  "content_type": "exam_paper",
+  "year_label": "2008-09",
+  "year_canonical": 2009,
+  "evaluation_component": "comprehensive",
+  "questions": [
+    {
+      "id": "Q-2009-compre-1a",
+      "stem": "An electro-pneumatic control system with bellows (capacities C1, C2), flapper-nozzle (gain Kf), bellows area Ab and stiffness Kb, potentiometer sensitivity K1 V/m, amplifier gain K2 V/V, linear transducer gain K3 m/V, points P and Q connected (same displacement). Draw the block diagram of the system.",
+      "topics": ["mathematical-modelling", "block-diagram-reduction", "control-components"],
+      "primary_topic": "mathematical-modelling",
+      "marks": 10,
+      "bloom_level": "apply",
+      "problem_type": "block-diagram-from-physical-system",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Missing the pneumatic bellows dynamics (RC-type lag) in the signal path",
+        "Incorrect feedback path for the mechanical linkage connecting P and Q",
+        "Confusing pressure-to-displacement and displacement-to-pressure conversions"
+      ],
+      "solution_method": "Identify each physical subsystem element (flapper-nozzle, bellows, amplifier, transducer, potentiometer) as a block with its gain or TF; trace the forward path from Xi to Pc and the feedback path through the transducer and potentiometer; apply the P=Q constraint to close the loop correctly.",
+      "key_formulas": [
+        "Bellows TF: X_bellow(s) = (Ab * P(s)) / (Kb * (1 + s*C/Kb))",
+        "Flapper-nozzle: Pc(s) = Kf * x_flapper(s)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-1b",
+      "stem": "For the electro-pneumatic system in Q1, determine the transfer function Pc(s)/Xi(s).",
+      "topics": ["mathematical-modelling", "block-diagram-reduction", "feedback-properties"],
+      "primary_topic": "block-diagram-reduction",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "closed-loop-tf-derivation",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Arithmetic errors combining the bellows and flapper-nozzle gains",
+        "Dropping the feedback gain K1*K2*K3 from denominator"
+      ],
+      "solution_method": "Use the block diagram from Q1a; apply the standard closed-loop TF formula G/(1+GH) where G is the forward path gain product and H is the feedback path gain product; simplify algebraically.",
+      "key_formulas": [
+        "CL TF = G(s) / (1 + G(s)H(s))"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-1c",
+      "stem": "For the electro-pneumatic system in Q1, determine the steady-state value of the output Pc for 3 units of sudden (step) input.",
+      "topics": ["steady-state-error", "mathematical-modelling"],
+      "primary_topic": "steady-state-error",
+      "marks": 4,
+      "bloom_level": "apply",
+      "problem_type": "steady-state-output-step-input",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Applying final value theorem to an unstable system without checking",
+        "Forgetting to multiply by input magnitude of 3"
+      ],
+      "solution_method": "Apply the Final Value Theorem: lim_{s->0} s * [Pc(s)/Xi(s)] * (3/s) = 3 * lim_{s->0} Pc(s)/Xi(s); substitute s=0 into the TF derived in Q1b.",
+      "key_formulas": [
+        "FVT: y_ss = lim_{s->0} s*Y(s)",
+        "Step input: X_i(s) = 3/s"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-2i",
+      "stem": "For the control system in Fig Q.2 with open-loop TF K*(s+α)/[s(s+5)] and feedback 1/(s+2), show the stable region in the K-α plane.",
+      "topics": ["stability-RH", "root-locus"],
+      "primary_topic": "stability-RH",
+      "marks": 7,
+      "bloom_level": "analyze",
+      "problem_type": "stability-region-K-alpha-plane",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forming the wrong characteristic equation by not accounting for the inner feedback loop",
+        "Skipping the row of zeros special case in RH table",
+        "Plotting inequality boundaries incorrectly (open vs closed)"
+      ],
+      "solution_method": "Find the closed-loop characteristic equation by simplifying the block diagram (forward: K(s+α)/[s(s+5)], feedback: 1/(s+2)); form CE = s^3 + 7s^2 + (10 + Kα)s + 2Kα + 10 = 0 (verify); apply RH criterion; derive inequalities on K and α for all-positive first-column elements; shade the stable region in the K-α plane.",
+      "key_formulas": [
+        "CE: s^3 + 7s^2 + (10 + Kα)s + (2Kα + 10) = 0 (closed-loop)",
+        "RH stability: all first-column elements > 0"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-2ii",
+      "stem": "For the system in Fig Q.2, find K and α for damping ratio ζ=0.707 and settling time ts=2 sec (2% criterion). Also sketch the real-axis locus of the roots.",
+      "topics": ["root-locus", "time-domain-specs"],
+      "primary_topic": "root-locus",
+      "marks": 12,
+      "bloom_level": "analyze",
+      "problem_type": "design-K-alpha-from-specs",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Using wrong settling-time formula (1% vs 2% band)",
+        "Confusing σ and ωd when locating the desired pole",
+        "Not verifying that the designed K is within the stable region"
+      ],
+      "solution_method": "From ts=2 sec (2% band), σ = 4/ts = 2; from ζ=0.707, ωd = σ = 2, so desired poles at -2 ± j2; substitute s = -2+j2 into the characteristic equation to solve for K and α simultaneously; sketch real-axis root loci showing departure/arrival directions.",
+      "key_formulas": [
+        "ts ≈ 4/σ (2% criterion)",
+        "σ = ζ*ωn, ωd = ωn*sqrt(1-ζ²)",
+        "For ζ=0.707: σ = ωd"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-2iii",
+      "stem": "For the system in Fig Q.2, draw neat sketches of root contours for K=11.25 and K=18.25, clearly showing all steps.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "root-contour-sketch-fixed-K",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Treating root contours as standard RL (they are RL in α, with K fixed)",
+        "Incorrect pole/zero locations after substituting fixed K",
+        "Missing asymptote angles for the α-variation RL"
+      ],
+      "solution_method": "Fix K and reformulate CE as 1 + α*[KN(s)/D(s)] = 0 to get root contour; identify equivalent open-loop poles and zeros; apply standard root locus rules (angles, asymptotes, breakaway) in s-plane for the variation in α.",
+      "key_formulas": [
+        "Root contour: CE rearranged as 1 + α*G_eq(s) = 0",
+        "Asymptote angles: (2k+1)*180°/n-m"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-3",
+      "stem": "Sketch the Nyquist plot for a system with open-loop TF G(s) = K(s-3)/[s(s+2)(s+5)], choosing the appropriate Nyquist contour. Determine the range of K for which the closed-loop system is stable.",
+      "topics": ["nyquist-criterion", "polar-plot", "gain-phase-margin"],
+      "primary_topic": "nyquist-criterion",
+      "marks": 25,
+      "bloom_level": "analyze",
+      "problem_type": "nyquist-plot-stability-range-K",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Treating s-3 as a minimum-phase factor instead of a RHP zero",
+        "Incorrect encirclement count due to NMP zero affecting phase",
+        "Forgetting to account for the pole at origin with a semicircular indentation",
+        "Wrong open-loop RHP pole count P when applying N = Z - P"
+      ],
+      "solution_method": "Note G(s) has a RHP zero at s=3 (non-minimum phase) and a pole at origin; indent Nyquist contour around origin; compute G(jω) for ω: 0+ to ∞; note phase goes from -90° to steep values due to NMP zero; find crossings of real axis; count encirclements of -1/K (or equivalently find K for N=0 so Z=0 closed-loop RHP poles); use N = Z - P with P=0.",
+      "key_formulas": [
+        "G(jω) = K(jω-3)/[jω(jω+2)(jω+5)]",
+        "Stability: Z = N + P = 0 ⟹ N = 0",
+        "Real-axis crossing: Im[G(jω)] = 0, solve for ω"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-4i",
+      "stem": "For the temperature control system in Fig Q.4 (autotransformer + electric actuator gain Ka V/V, thermal resistance R °C/W, thermal capacitance C J/°C, sensor Kt V/°C, Joule's coefficient J), draw the labeled signal flow graph.",
+      "topics": ["signal-flow-graph", "mathematical-modelling"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 6,
+      "bloom_level": "apply",
+      "problem_type": "sfg-from-thermal-system",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect Laplace-domain representation of the RC thermal lag (1/(RCs+1))",
+        "Omitting Joule's coefficient J in the power-to-heat conversion branch",
+        "Wrong feedback sign at the summing node"
+      ],
+      "solution_method": "Write incremental equations: e_a = Ka*e_r; power W = J*e_a; ΔT(s) = W*R/(RCs+1); feedback: e_f = Kt*ΔT; error e_r = e_ref - e_f; draw nodes for each variable and edges with the gains/TFs above.",
+      "key_formulas": [
+        "Thermal TF: ΔT(s)/W(s) = R/(RCs + 1)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-4ii",
+      "stem": "For the temperature control system in Q4, obtain the incremental transfer function ΔT(s)/Δe_r(s) using Mason's gain formula.",
+      "topics": ["signal-flow-graph", "mathematical-modelling"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 3,
+      "bloom_level": "apply",
+      "problem_type": "tf-from-sfg-mason",
+      "difficulty_estimate": "easy",
+      "common_errors": [
+        "Incorrect graph determinant Δ (missing feedback loop gains)",
+        "Not setting cofactor Δ1 = 1 when the forward path touches all loops"
+      ],
+      "solution_method": "Apply Mason's gain formula: T = Σ(Pk*Δk)/Δ; identify the single forward path gain P1 = Ka*J*R/(RCs+1) and the single feedback loop gain L1 = -Ka*J*Kt*R/(RCs+1); compute Δ = 1 - L1; TF = P1/Δ.",
+      "key_formulas": [
+        "Mason: T = ΣPk*Δk / Δ",
+        "ΔT(s)/Δe_r(s) = Ka*J*R / (RCs + 1 + Ka*J*Kt*R)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-4iii",
+      "stem": "For the temperature control system in Q4, derive expressions for the sensitivity of the system to changes in Ka in open-loop and closed-loop mode and reduce for DC conditions.",
+      "topics": ["feedback-properties"],
+      "primary_topic": "feedback-properties",
+      "marks": 6,
+      "bloom_level": "analyze",
+      "problem_type": "sensitivity-open-vs-closed-loop",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Using wrong sensitivity definition (should be S = (dT/T)/(dKa/Ka))",
+        "Not setting s=0 for DC reduction"
+      ],
+      "solution_method": "OL TF: T_OL = Ka*J*R/(RCs+1); S^T_Ka(OL) = 1. CL TF from Q4ii; compute S^T_Ka(CL) = 1/(1 + Ka*J*Kt*R/(RCs+1)); at DC (s=0): S_DC = 1/(1 + Ka*J*Kt*R), showing sensitivity reduction by closed-loop.",
+      "key_formulas": [
+        "Sensitivity: S^T_Ka = (∂T/T)/(∂Ka/Ka) = (Ka/T)*(∂T/∂Ka)",
+        "DC sensitivity (CL): 1/(1 + Ka*J*Kt*R)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-4iv",
+      "stem": "For the temperature control system in Q4, if inlet temperature Ti is also varied, draw the modified signal flow graph and determine ΔT(s)/ΔTi(s).",
+      "topics": ["signal-flow-graph", "mathematical-modelling", "feedback-properties"],
+      "primary_topic": "signal-flow-graph",
+      "marks": 5,
+      "bloom_level": "analyze",
+      "problem_type": "disturbance-tf-sfg",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Incorrect entry point for Ti disturbance into the SFG (should enter at the thermal node)",
+        "Not setting e_ref = 0 when finding ΔT/ΔTi (superposition)"
+      ],
+      "solution_method": "Add a disturbance node Ti entering the tank's temperature node with gain 1 (or via thermal coupling); set reference input to zero; apply Mason's formula to find ΔT/ΔTi with the same feedback loop; the loop gain suppresses disturbance at DC.",
+      "key_formulas": [
+        "ΔT(s)/ΔTi(s) = 1/(1 + Ka*J*Kt*R/(RCs+1))",
+        "Disturbance TF uses same denominator as CL TF"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2009-compre-5",
+      "stem": "The open-loop TF of a unity negative feedback system is K/[s(1+2s)(0.1s+1)]. Design a phase-lead compensator using Bode (asymptotic) plots to meet: (a) steady-state error for unit ramp ≤ 20%, (b) phase margin = 40° (with 10° safety margin). Draw the complete Bode plots including compensator.",
+      "topics": ["bode-design", "bode-plot", "steady-state-error", "gain-phase-margin"],
+      "primary_topic": "bode-design",
+      "marks": 30,
+      "bloom_level": "evaluate",
+      "problem_type": "lead-compensator-bode-design",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Wrong Kv from ramp SSE requirement (SSE ≤ 20% ⟹ Kv ≥ 5)",
+        "Not adding 10° safety margin to required PM before choosing compensator phase",
+        "Computing α = (1-sinφ_m)/(1+sinφ_m) instead of reciprocal (pole-zero arrangement)",
+        "Incorrect gain crossover frequency shift after adding compensator gain"
+      ],
+      "solution_method": "Step 1: SSE for ramp = 1/Kv ≤ 0.2 ⟹ Kv = K ≥ 5; set K=5. Step 2: Plot Bode of G(jω)=5/[jω(1+2jω)(1+0.1jω)]; find PM of uncompensated system. Step 3: Required additional phase = (40+10) - existing PM; compute φ_m; find α = (1-sinφ_m)/(1+sinφ_m); compensator gain = 1/√α; find new ωgc where |G(jωgc)| = -20log(1/√α) dB; set ωm = ωgc = 1/√α * (1/T); solve for T; compensator: C(s) = (1+αTs)/(1+Ts). Step 4: Draw composite Bode plot.",
+      "key_formulas": [
+        "Kv = lim_{s→0} s*G(s) for type-1 system",
+        "φ_m = arcsin((1-α)/(1+α))",
+        "Lead compensator: C(s) = K_c*(s + 1/T)/(s + 1/(αT)), α < 1",
+        "Max phase frequency: ωm = 1/(T√α)"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "First Semester 2008-2009 paper (AAOC C321). Total marks 120 across 5 questions. Q1 involves an electro-pneumatic system with a hand-drawn schematic (image-only diagram); block diagram topology inferred from problem text. Q5 carries 30 marks and requires Bode graph sheets. NMP system in Q3 (RHP zero at s=3) is a notable difficulty."
+}

@@ -1,0 +1,95 @@
+{
+  "source_file": "Tut 10.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 10",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1A",
+      "stem": "For unity feedback closed loop system, G(s) = K(s+1)(s+2)/((s+0.1)(s-1)). Draw the root locus for this system.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "draw-root-locus-with-zeros",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting to account for zeros when computing asymptotes — this system has 2 poles and 2 zeros, so no asymptotes go to infinity",
+        "Misidentifying departure angles from the RHP pole at s=1",
+        "Not checking break-in/breakaway points between zeros and poles"
+      ],
+      "solution_method": "Identify open-loop poles at s=-0.1, s=1 and zeros at s=-1, s=-2. Since #poles = #zeros = 2, both branches terminate at finite zeros (no asymptotes). Apply angle condition to sketch locus; find breakaway/break-in points by solving dK/ds=0 from the characteristic equation K = (s+0.1)(s-1)/((s+1)(s+2)).",
+      "key_formulas": [
+        "Angle condition: ∠G(s)H(s) = ±180°(2k+1)",
+        "K = |product of distances to poles| / |product of distances to zeros|",
+        "dK/ds = 0 for breakaway/break-in points"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1B",
+      "stem": "For unity feedback closed loop system, G(s) = K(s+1)(s+2)/((s+0.1)(s-1)). Find the gain K for which the system will have repeated roots.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "find-K-repeated-roots",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Confusing breakaway point (real axis) with complex repeated roots",
+        "Algebraic errors when differentiating K(s) to find dK/ds = 0"
+      ],
+      "solution_method": "Express K as a function of s from 1 + KG(s) = 0 → K = -(s+0.1)(s-1)/((s+1)(s+2)). Differentiate and set dK/ds = 0 to find candidate breakaway/break-in points. Substitute back to get K values; verify they lie on the real-axis locus segments.",
+      "key_formulas": [
+        "K(s) = (s+0.1)(s-1)/((s+1)(s+2)) (magnitude condition rearranged)",
+        "dK/ds = 0"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1C",
+      "stem": "For unity feedback closed loop system, G(s) = K(s+1)(s+2)/((s+0.1)(s-1)). Check if s_o = -1 + 0.678j lies on the root locus. If yes, find the gain K that places a closed-loop pole there.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "verify-point-on-root-locus-find-K",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Angle arithmetic errors when summing contributions from multiple poles and zeros",
+        "Not checking that the net angle equals an odd multiple of 180°",
+        "Using magnitudes instead of angles for the angle condition check"
+      ],
+      "solution_method": "Evaluate the angle of G(s_o) = sum of angles from zeros minus sum of angles from poles. If net angle = ±180°(2k+1), the point lies on the locus. Then compute K = |s_o - p1||s_o - p2| / (|s_o - z1||s_o - z2|) using the magnitude condition.",
+      "key_formulas": [
+        "∠G(s_o) = (∠(s_o+1) + ∠(s_o+2)) - (∠(s_o+0.1) + ∠(s_o-1)) = ±(2k+1)180°",
+        "K = |s_o+0.1||s_o-1| / (|s_o+1||s_o+2|)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "Draw the root locus for a negative feedback system with G(s)H(s) = K/((s+1)^2(s+4)). Find the value of K so that one of the closed-loop poles is at -5.",
+      "topics": ["root-locus"],
+      "primary_topic": "root-locus",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "draw-rl-find-K-from-pole",
+      "difficulty_estimate": "medium",
+      "common_errors": [
+        "Forgetting the double pole at s=-1 when counting branches",
+        "Errors in computing asymptote angles and centroid for 3-pole system",
+        "Incorrect magnitude condition evaluation at s=-5"
+      ],
+      "solution_method": "Poles at s=-1 (double), s=-4; no finite zeros. Three branches → 3 asymptotes at 60°, 180°, 300° with centroid at ((-1-1-4)/3, 0) = (-2, 0). Find breakaway on real axis between -1 and -4. For K at closed-loop pole s=-5: use magnitude condition K = |s+1|^2|s+4| evaluated at s=-5 → K = 16×1 = 16.",
+      "key_formulas": [
+        "Asymptote angles: (2k+1)×180°/(n-m)",
+        "Centroid: σ_a = (Σpoles - Σzeros)/(n-m)",
+        "K = |s+1|^2 |s+4| at s = -5"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial focuses entirely on root locus — both sketching and quantitative gain calculation. Q1 is a non-minimum-phase/RHP-pole system with finite zeros (n=m=2), making it more involved than the standard all-pole case in Q2."
+}

@@ -1,0 +1,77 @@
+{
+  "source_file": "Tut 12.pdf",
+  "content_type": "tutorial",
+  "year_label": "2025-26 Tut 12",
+  "year_canonical": 2026,
+  "evaluation_component": "tutorial",
+  "questions": [
+    {
+      "id": "Q-2026-tutorial-1A",
+      "stem": "For a unity feedback closed loop system with forward path transfer function G(s) = K(s-2)/(s+1)^2, draw the Nyquist plot (assuming K=1).",
+      "topics": ["nyquist-criterion", "polar-plot"],
+      "primary_topic": "nyquist-criterion",
+      "marks": null,
+      "bloom_level": "apply",
+      "problem_type": "draw-nyquist-plot-NMP",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Missing the open-RHP zero at s=2 and its effect on encirclements",
+        "Incorrectly applying Nyquist stability criterion when P (OL poles in RHP) is nonzero or RHP zeros are present",
+        "Not correctly drawing the mirror image (negative frequency) portion of the plot",
+        "Forgetting to account for the indentation around any jω-axis poles"
+      ],
+      "solution_method": "Substitute s=jω into G(jω)=K(jω-2)/(jω+1)^2 and evaluate magnitude and phase for ω from 0 to ∞, then mirror for −∞ to 0, and close at infinity. Count net clockwise encirclements N of −1/K point; use Z=N+P to find RHP closed-loop poles.",
+      "key_formulas": [
+        "|G(jω)| = K·√(ω²+4)/(ω²+1)",
+        "∠G(jω) = atan2(ω, -2) - 2·atan(ω)",
+        "Z = N + P (Nyquist: Z=CL RHP poles, N=CW encirclements, P=OL RHP poles)"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-1B",
+      "stem": "For the same unity feedback system G(s) = K(s-2)/(s+1)^2, determine the condition on K for closed-loop stability using the Nyquist plot.",
+      "topics": ["nyquist-criterion", "gain-phase-margin"],
+      "primary_topic": "nyquist-criterion",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "stability-condition-K-nyquist",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting that G(s) has a RHP zero (non-minimum phase) which affects the Nyquist encirclement count",
+        "Applying Bode gain-margin logic instead of encirclement-counting logic",
+        "Sign error in computing the real-axis crossing of the Nyquist plot"
+      ],
+      "solution_method": "G(s) has P=0 open-loop RHP poles (poles at s=-1, multiplicity 2) and one RHP zero at s=2. For stability Z=0 we need N=0. Find where Nyquist plot crosses real axis (set Im[G(jω)]=0, solve for ω_cross), evaluate Re[G(jω_cross)], and require −1/K not encircled, giving a bound on K.",
+      "key_formulas": [
+        "Im[G(jω)] = 0 → solve for ω_cross",
+        "Stability: K < 1/|Re[G(jω_cross)]| (direction depends on sign of real-axis crossing)",
+        "Z = N + P = 0 required for stability"
+      ],
+      "stem_reconstructed_from_solution": false
+    },
+    {
+      "id": "Q-2026-tutorial-2",
+      "stem": "For a closed loop system with loop transfer function G(s)H(s) = e^{-sT} / [s(s+1)], determine the range of dead time T such that the closed loop system remains stable.",
+      "topics": ["nyquist-criterion", "gain-phase-margin", "polar-plot"],
+      "primary_topic": "gain-phase-margin",
+      "marks": null,
+      "bloom_level": "analyze",
+      "problem_type": "dead-time-stability-range-PM",
+      "difficulty_estimate": "hard",
+      "common_errors": [
+        "Forgetting that dead time e^{-jωT} contributes only phase shift (−ωT rad) without changing magnitude",
+        "Using gain crossover frequency from the no-delay system incorrectly",
+        "Not expressing the stability condition as T < π/(2ω_gc) correctly"
+      ],
+      "solution_method": "Find gain crossover frequency ω_gc of 1/[s(s+1)] (magnitude=1), giving ω_gc=1 rad/s (approximately). Phase of G(jω)H(jω) at ω_gc is −90°−atan(ω_gc)−ω_gc·T. For stability, total phase must be > −180°, so −90°−45°−ω_gc·T > −180°, yielding T < 45°/ω_gc in radians → T < π/4 seconds.",
+      "key_formulas": [
+        "|GH(jω)| = 1/[ω·√(ω²+1)] = 1 → ω_gc",
+        "∠GH(jω_gc) = −90° − atan(ω_gc) − ω_gc·T > −180°",
+        "T < (π/2 − atan(ω_gc)) / ω_gc"
+      ],
+      "stem_reconstructed_from_solution": false
+    }
+  ],
+  "notes": "Tutorial dated 21 April 2026. Q1 includes an indicative Nyquist diagram (K=1) showing the plot for the non-minimum-phase system. Q1 split into 1A (draw) and 1B (stability condition). Both questions are Nyquist/frequency-domain stability problems; Q2 involves dead-time (transport lag) — tests phase-margin reasoning under delay."
+}
