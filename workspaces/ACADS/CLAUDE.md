@@ -28,15 +28,18 @@ ACADS/
 ├── CLAUDE.md
 ├── Bulletin_2025-26.pdf       ← BITS Pilani bulletin (authoritative)
 ├── Bulletin_2025-26.txt       ← pdftotext -layout extract for grep
-├── ConSys/    INSTR F242  Control Systems
-├── MuE/       INSTR F244  Microelectronic Circuits
-├── MuP/       INSTR F241  Microprocessors & Interfacing
-├── PoM/       MGTS F211   Principles of Management
-├── PopLit/    HSS F316    Pop Lit & Culture of South Asia (HuEL)
-└── SaS/       INSTR F243  Signals & Systems
+├── ConSys/           INSTR F242  Control Systems
+├── MuE/              INSTR F244  Microelectronic Circuits
+├── MuP/              INSTR F241  Microprocessors & Interfacing
+├── PoM/              MGTS F211   Principles of Management
+├── PopLit/           HSS F316    Pop Lit & Culture of South Asia (HuEL)
+├── SaS/              INSTR F243  Signals & Systems
+└── ML-DL-Bootcamp/   self-designed 14-day industry-readiness sprint (not a course)
 ```
 
 Each course subdir is a sealed exam-prep workspace; most have their own `CLAUDE.md`. See child `CLAUDE.md` files for course-specific evaluation profile and tutoring conventions.
+
+`ML-DL-Bootcamp/` is the odd one out — it's an **off-curriculum** sprint for industry readiness, not coursework. It lives here because the user wanted academic + skill-building under one roof, but it doesn't follow PYQ/handout conventions. See its own `CLAUDE.md`.
 
 ## Cross-workspace isolation
 
